@@ -1,12 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameMaster.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MoveArrow.cs">
     <Files>
-      <File FileName="Assets\MoveAlong.cs" Line="5" Column="2" />
-      <File FileName="Assets\GridDraw.cs" Line="48" Column="101" />
-      <File FileName="Assets\DummyDraw.cs" Line="22" Column="18" />
-      <File FileName="Assets\WaypointMover.cs" Line="51" Column="5" />
+      <File FileName="Assets\MoveArrow.cs" Line="34" Column="3" />
+      <File FileName="Assets\MoveAlong.cs" Line="1" Column="1" />
+      <File FileName="Assets\GridDraw.cs" Line="33" Column="4" />
+      <File FileName="Assets\DummyDraw.cs" Line="1" Column="1" />
+      <File FileName="Assets\WaypointMover.cs" Line="1" Column="1" />
       <File FileName="Assets\GameMaster.cs" Line="1" Column="1" />
+      <File FileName="Assets\ArrowFire.cs" Line="30" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

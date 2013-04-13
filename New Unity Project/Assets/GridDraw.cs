@@ -49,7 +49,10 @@ public class GridDraw : MonoBehaviour {
 					
 					finalLocation += new Vector3(0f, 0, 0);
 					
-					Instantiate(towerobj, finalLocation, Quaternion.identity);
+					GameObject go = Instantiate(Resources.Load ("TowerPrefab"), finalLocation, Quaternion.identity) as GameObject;
+					
+					go.GetComponent<ArrowFire>().arrowTarget = GameObject.FindGameObjectWithTag ("Enemy");
+					go.GetComponent<ArrowFire>().arrowPrefab = Resources.Load ("ArrowPrefab") as GameObject;
 					
 				}
 			}
@@ -65,7 +68,7 @@ public class GridDraw : MonoBehaviour {
 		{
 			StartPos.z = i;
 			EndPos.z = i;
-			Debug.DrawLine (StartPos, EndPos, Color.white, 1.0f, false);
+			//Debug.DrawLine (StartPos, EndPos, Color.white, 1.0f, false);
 		}
 	}
 	

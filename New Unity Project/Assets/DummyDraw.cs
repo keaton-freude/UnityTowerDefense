@@ -31,7 +31,7 @@ public class DummyDraw : MonoBehaviour {
 			StartPos.x = i;
 			EndPos.x = i;
 			//Gizmos.DrawLine (StartPos, EndPos);
-			Debug.DrawLine (StartPos, EndPos, Color.white, 1.0f, false);
+			//Debug.DrawLine (StartPos, EndPos, Color.white, 1.0f, false);
 		}
 	}
 }
