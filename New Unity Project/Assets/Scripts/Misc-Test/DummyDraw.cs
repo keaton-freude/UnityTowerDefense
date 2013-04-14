@@ -4,8 +4,8 @@ using System.Collections;
 public class DummyDraw : MonoBehaviour {
 	public int GridSize = 10;
 	
-	Vector3 StartPos = new Vector3(0, .2f, 0);
-	Vector3 EndPos = new Vector3(0, .2f, 0);
+	Vector3 StartPos = new Vector3(0, 90.2f, 0);
+	Vector3 EndPos = new Vector3(0, 90.2f, 0);
 	
 	public int X_OFFSET = 20;
 	

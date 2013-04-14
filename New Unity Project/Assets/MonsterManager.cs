@@ -23,7 +23,7 @@ public class MonsterManager : MonoBehaviour
 	
 	public void CreateMonster(string prefabPath)
 	{
-		GameObject go = Instantiate(Resources.Load (prefabPath), new Vector3(250, 0, 250), Quaternion.identity) as GameObject;
+		GameObject go = Instantiate(Resources.Load (prefabPath), new Vector3(250, 90, 250), Quaternion.identity) as GameObject;
 		
 		//List<GameObject> test = Waypoints.GetComponent<Waypoints>().Path1.Cop
 		

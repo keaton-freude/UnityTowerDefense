@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GridDraw : MonoBehaviour {
 	
-	Vector3 StartPos = new Vector3(0, .2f, 0);
-	Vector3 EndPos = new Vector3(0, .2f, 0);
+	Vector3 StartPos = new Vector3(0, 90.2f, 0);
+	Vector3 EndPos = new Vector3(0, 90.2f, 0);
 	
 	public GameObject towerobj;
 	public GameObject cubeobj;
@@ -78,6 +78,7 @@ public class GridDraw : MonoBehaviour {
 		
 		toReturn.x = (((int)Coords.x - X_OFFSET) / (int)GridSize);
 		toReturn.z = (((int)Coords.z - Y_OFFSET) / (int)GridSize);
+		//toReturn.y = 90;
 		
 		return toReturn;
 	}
@@ -88,13 +89,14 @@ public class GridDraw : MonoBehaviour {
 		
 		toReturn.x = ((int)MouseClickLocation.x / (int)GridSize) * GridSize + X_OFFSET;
 		toReturn.z = ((int)MouseClickLocation.z / (int)GridSize) * GridSize + Y_OFFSET;
+		//toReturn.y = 90;
 		
  		return toReturn;
 	}
 	
 	public Vector3 TransformGridToWorldSpace(Vector3 Coords)
 	{
-		Vector3 toReturn = Coords * 10.0f + new Vector3(X_OFFSET, 0, Y_OFFSET);
+		Vector3 toReturn = Coords * 10.0f + new Vector3(X_OFFSET, 90, Y_OFFSET);
 		
 		return toReturn;
 	}

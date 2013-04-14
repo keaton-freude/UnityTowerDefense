@@ -16,7 +16,7 @@ public class WaypointMover : Pathfinding
 	{
 		foreach (GameObject go in Waypoints)
 		{
-			go.transform.localPosition = new Vector3(go.transform.localPosition.x, 0, go.transform.localPosition.z);
+			go.transform.localPosition = new Vector3(go.transform.localPosition.x, 90, go.transform.localPosition.z);
 		}
 		currentWaypoint = Waypoints[0];
 		Waypoints.RemoveAt (0);
