@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_0_1;UNITY_4_0;UNITY_STANDALONE_WIN;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_0_1;UNITY_4_0;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -44,11 +44,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DaylightCycle.cs" />
+     <Compile Include="Assets\FloatingText.cs" />
      <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\General Scripts\ActivateTrigger.cs" />
      <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
+     <Compile Include="Assets\LoadParameters.cs" />
+     <Compile Include="Assets\MainMenuHUD.cs" />
      <Compile Include="Assets\MonsterManager.cs" />
+     <Compile Include="Assets\MovementScript.cs" />
      <Compile Include="Assets\Pathfinding\Scenes\Scripts\AI.cs" />
      <Compile Include="Assets\Pathfinding\Scenes\Scripts\GridPlayer.cs" />
      <Compile Include="Assets\Pathfinding\Scenes\Scripts\Lines.cs" />
@@ -113,13 +118,14 @@
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\ServerTime.cs" />
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TestBase.cs" />
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
-     <Compile Include="Assets\Rain&amp;Snow_StaticNova\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\Rain&amp;Snow_StaticNova\Prefabs\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\CameraScripts\RTSCameraMove.cs" />
      <Compile Include="Assets\Scripts\GUI\DebugTest.cs" />
      <Compile Include="Assets\Scripts\GUI\HUD.cs" />
      <Compile Include="Assets\Scripts\Misc-Test\DummyDraw.cs" />
      <Compile Include="Assets\Scripts\Misc-Test\GameMaster.cs" />
      <Compile Include="Assets\Scripts\Misc-Test\GridDraw.cs" />
+     <Compile Include="Assets\Scripts\Misc-Test\MonsterData.cs" />
      <Compile Include="Assets\Scripts\Misc-Test\TestMovement.cs" />
      <Compile Include="Assets\Scripts\Misc-Test\TestParticles.cs" />
      <Compile Include="Assets\Scripts\Misc-Test\TestWidth.cs" />
@@ -127,20 +133,33 @@
      <Compile Include="Assets\Scripts\Movement\WaypointMover.cs" />
      <Compile Include="Assets\Scripts\Projectile\ArrowFire.cs" />
      <Compile Include="Assets\Scripts\Projectile\MoveArrow.cs" />
+     <Compile Include="Assets\Scripts\TowerData.cs" />
+     <Compile Include="Assets\TestGUI.cs" />
+     <Compile Include="Assets\TestHPBar.cs" />
+     <Compile Include="Assets\TowerInfo.cs" />
      <Compile Include="Assets\Waypoints.cs" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Rain&amp;Snow_StaticNova\README.txt" />
      <None Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\marcopolo-readme.txt" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\ImportedAssetsAtStart\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\Photon3Unity3D.xml" />
+     <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-SimpleWater4.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\ImportedAssetsAtStart\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\release_history.txt" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\Photon Unity Networking\DemoBoxes\Resources\eurof_tt.txt" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Scripts\Todo.txt" />
+     <None Include="Assets\Standard Assets\Water (Pro Only)\Sources\Shaders\FX-Water.shader" />
      <None Include="Assets\SkeletonData\animations.txt" />
      <None Include="Assets\Photon Unity Networking\readme.txt" />
      <None Include="Assets\ImportedAssetsAtStart\SkeletonData\animations.txt" />
+     <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\WaterInclude.cginc" />
+     <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-Water4.shader" />
      <None Include="Assets\ImportedAssetsAtStart\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\Photon Unity Networking\changelog.txt" />
  <Reference Include="Photon3Unity3D">

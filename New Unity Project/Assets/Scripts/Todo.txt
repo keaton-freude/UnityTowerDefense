@@ -1,0 +1,12 @@
+﻿High Priority
+===================================================================================
+--:Toggle Monster Spawn Grid & Tower Build Grid based on HUD Selection
+--:Implement Game Rules
+--:--:Add Income per x Seconds
+--:--:Add Gold cost per tower build
+--:--:Add Gold cost per Monster Spawn
+--:--:Add Income Generation from Monster Spawn
+--:--:Add Lives for Both Teams
+--:--:Remove Lives after Creep gets through maze
+--:Detect if spawned tower blocks creep path and respond appropriately [DONE, IF SPAWNED TOWER BLOCKS PATH (ANY PATH TO GOAL, TOWER WILL NOT BE BUILT]
+--:--:Test execution time of method & make changes if needed [SPEED SEEMS GOOD, WILL REVIST IF EXECUTION SPEED DROPS]

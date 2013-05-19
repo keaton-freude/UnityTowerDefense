@@ -1,22 +1,44 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\RaiseHeight.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Misc-Test\GridDraw.cs">
     <Files>
-      <File FileName="Assets\Scripts\Movement\WaypointMover.cs" Line="16" Column="3" />
-      <File FileName="Assets\MonsterManager.cs" Line="35" Column="3" />
-      <File FileName="Assets\Waypoints.cs" Line="18" Column="5" />
-      <File FileName="Assets\Scripts\GUI\HUD.cs" Line="49" Column="12" />
-      <File FileName="Assets\Scripts\Projectile\ArrowFire.cs" Line="34" Column="4" />
-      <File FileName="Assets\Scripts\Projectile\MoveArrow.cs" Line="25" Column="3" />
-      <File FileName="Assets\Scripts\Misc-Test\GridDraw.cs" Line="71" Column="6" />
-      <File FileName="Assets\Scripts\Misc-Test\DummyDraw.cs" Line="34" Column="6" />
-      <File FileName="Assets\Editor\RaiseHeight.cs" Line="23" Column="34" />
+      <File FileName="Assets\Scripts\Misc-Test\GridDraw.cs" Line="39" Column="17" />
+      <File FileName="Assets\Scripts\GUI\HUD.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Misc-Test\MonsterData.cs" Line="1" Column="1" />
+      <File FileName="Assets\TowerInfo.cs" Line="16" Column="2" />
+      <File FileName="Assets\Scripts\Misc-Test\GameMaster.cs" Line="1" Column="1" />
+      <File FileName="Assets\MainMenuHUD.cs" Line="66" Column="75" />
+      <File FileName="Assets\MonsterManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Waypoints.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Movement\WaypointMover.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Misc-Test\DummyDraw.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraScripts\RTSCameraMove.cs" Line="1" Column="1" />
+      <File FileName="Assets\DaylightCycle.cs" Line="1" Column="1" />
+      <File FileName="Assets\TestHPBar.cs" Line="1" Column="1" />
+      <File FileName="Assets\TestGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\MovementScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\LoadParameters.cs" Line="19" Column="1" />
+      <File FileName="Assets\Pathfinding\Scripts\Pathfinder.cs" Line="1" Column="1" />
+      <File FileName="Assets\Pathfinding\Scenes\Scripts\TDManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Pathfinding\Scripts\QueuePath.cs" Line="1" Column="1" />
+      <File FileName="Assets\Pathfinding\Scenes\Scripts\TDEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Pathfinding\Scenes\Scripts\SetGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets\Pathfinding\Scenes\Scripts\AI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Pathfinding\Scripts\DynamicTDGridObject.cs" Line="1" Column="1" />
+      <File FileName="Assets\Pathfinding\Scripts\Pathfinding.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\Keaton\Desktop\UnityTowerDefense\New Unity Project\Assets\Scripts\Movement\WaypointMover.cs" line="22" />
+      <Breakpoint file="C:\Users\Keaton\Desktop\UnityTowerDefense\New Unity Project\Assets\Scripts\Projectile\ArrowFire.cs" line="52" />
+      <Breakpoint file="C:\Users\Keaton\Desktop\UnityTowerDefense\New Unity Project\Assets\Scripts\Projectile\MoveArrow.cs" line="59" />
+      <Breakpoint file="C:\Users\Keaton\Desktop\UnityTowerDefense\New Unity Project\Assets\Scripts\GUI\HUD.cs" line="116" />
+      <Breakpoint file="C:\Users\Keaton\Desktop\UnityTowerDefense\New Unity Project\Assets\Pathfinding\Scripts\Pathfinder.cs" line="335" />
+      <Breakpoint file="C:\Users\Keaton\Desktop\UnityTowerDefense\New Unity Project\Assets\Pathfinding\Scripts\Pathfinding.cs" line="21" />
+      <Breakpoint file="C:\Users\Keaton\Desktop\UnityTowerDefense\New Unity Project\Assets\Scripts\Misc-Test\GridDraw.cs" line="198" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Assets\Scripts\Misc-Test\GridDraw.cs" line="100" offsetX="266" offsetY="1485" expression="child" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

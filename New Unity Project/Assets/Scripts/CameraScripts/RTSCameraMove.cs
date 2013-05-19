@@ -7,6 +7,9 @@ public class RTSCameraMove : MonoBehaviour
 	//so we should store that transform locally instead of looking it up each time
 	private Transform myTransform;
 	
+	public Vector2 HorizontalBounds;
+	public Vector2 VerticalBounds;
+	
 	//This is the amount of area that one's mouse needs to be within to move the screen (compared to edges)
 	public float scrollArea;
 	
@@ -14,6 +17,8 @@ public class RTSCameraMove : MonoBehaviour
 	public float scrollSpeed; 
 	
 	public float zoomSpeed;
+	
+	public Vector3 HomeLocation = new Vector3(250f, 153.8839f, 204f);
 
 	// Use this for initialization
 	void Start () 
@@ -30,24 +35,33 @@ public class RTSCameraMove : MonoBehaviour
 		if (x <= scrollArea)
 		{
 			//Move to the left
-			myTransform.position += new Vector3(-scrollSpeed * Time.deltaTime, 0, 0);
+			if (myTransform.position.x > HorizontalBounds.x)
+				myTransform.position += new Vector3(-scrollSpeed * Time.deltaTime, 0, 0);
 		}
 		if (x >= Screen.width - scrollArea)
 		{
 			//Move to the right
-			myTransform.position += new Vector3(scrollSpeed * Time.deltaTime, 0, 0);
+			if (myTransform.position.x < HorizontalBounds.y)
+				myTransform.position += new Vector3(scrollSpeed * Time.deltaTime, 0, 0);
 		}
 		
 		if (y <= scrollArea)
 		{
-			myTransform.position += new Vector3(0, 0, -scrollSpeed * Time.deltaTime);
+			if (myTransform.position.z > VerticalBounds.x)
+				myTransform.position += new Vector3(0, 0, -scrollSpeed * Time.deltaTime);
 		}
 		
 		if (y >= Screen.height - scrollArea)
 		{
-			myTransform.position += new Vector3(0, 0, scrollSpeed * Time.deltaTime);
+			if (myTransform.position.z < VerticalBounds.y)
+				myTransform.position += new Vector3(0, 0, scrollSpeed * Time.deltaTime);
 		}
 		
 		myTransform.position += new Vector3(0, Input.GetAxis ("Mouse ScrollWheel") * -zoomSpeed * Time.deltaTime, 0);
+	}
+	
+	public void MoveToHome()
+	{
+		myTransform.position = HomeLocation;
 	}
 }

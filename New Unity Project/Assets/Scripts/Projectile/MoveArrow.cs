@@ -11,6 +11,8 @@ public class MoveArrow : MonoBehaviour {
 	public Transform myTransform;
 	
 	private Vector3 offset;
+
+    public int damage;
 	
 	void Awake()
 	{
@@ -34,24 +36,41 @@ public class MoveArrow : MonoBehaviour {
 	void Update () 
 	{
 		if (Target == null)
+		{
+			if (this.gameObject != null)
+				GameObject.Destroy (this.gameObject); //we don't have a target. lets just kill ourselves :(
 			return;
+		}
 		
-		myTransform.position = Vector3.MoveTowards(myTransform.position, Target.transform.position + offset, Time.deltaTime * Speed);
+		if (this.gameObject != null)
+		{
 		
-		Vector3 v1 = new Vector3 (Target.transform.position.x, this.transform.position.y, Target.transform.position.z);
+			myTransform.position = Vector3.MoveTowards(myTransform.position, Target.transform.position + offset, Time.deltaTime * Speed);
+			
+			Vector3 v1 = new Vector3 (Target.transform.position.x, this.transform.position.y, Target.transform.position.z);
+			
+			this.transform.LookAt (v1);
+		}
 		
-		this.transform.LookAt (v1);
+
+			
 	}
 	
 	void OnTriggerEnter(Collider other)
 	{
+		//Debug.Log ("hello");
+		
+		
 		
 		if (other.tag == "Enemy")
 		{
-			ParticleSystem ps = GameObject.Instantiate(OnDeathEffect) as ParticleSystem;
-			ps.transform.position = this.transform.position;
-			ps.Play();
-			GameObject.Destroy (this.gameObject);
+            other.gameObject.GetComponent<TestGUI>().CurrentHP -= damage;
+            var v = Camera.main.WorldToViewportPoint(other.transform.position);
+            GameMaster.Instance.SpawnFloatingDamage(damage, v.x, v.y);
+			if (this.gameObject != null)
+				Network.Destroy (this.gameObject);
+			
+			
 		}
 	}
 }

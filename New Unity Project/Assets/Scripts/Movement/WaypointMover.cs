@@ -8,8 +8,12 @@ public class WaypointMover : Pathfinding
 	
 	public GameObject currentWaypoint;
 	
+	public Camera camera;
+	
 	public bool DEBUG_STARTED = false;
 	public bool DoMove = false;
+	
+	public Vector3 LastPosition;
 	
 	// Use this for initialization
 	void Start () 
@@ -33,31 +37,47 @@ public class WaypointMover : Pathfinding
 	// Update is called once per frame
 	void Update () 
 	{	
-		if (DoMove)
-			StartMoving();
-		if (Path.Count > 0)
+		if (networkView.isMine)
 		{
-			Move ();
-			DEBUG_STARTED = true;
-		}
-		else if (DEBUG_STARTED)
-		{
-			/* we either get a new waypoint, or we're done */
-			
-			if (Waypoints.Count != 0)
+			if (DoMove)
+				StartMoving();
+			if (Path.Count > 0)
 			{
-				Debug.Log ("popping new waypoint");
-				currentWaypoint = Waypoints[0];
-				Waypoints.RemoveAt (0);
+				Move ();
+				DEBUG_STARTED = true;
+			}
+			else if (DEBUG_STARTED)
+			{
+				/* we either get a new waypoint, or we're done */
 				
-				FindPath (transform.localPosition, currentWaypoint.transform.localPosition);
+				if (Waypoints.Count != 0)
+				{
+					Debug.Log ("popping new waypoint");
+					currentWaypoint = Waypoints[0];
+					Waypoints.RemoveAt (0);
+					
+					FindPath (transform.localPosition, currentWaypoint.transform.localPosition);
+				}
+				else
+				{
+					/* Done, remove this game object? lol */
+					Debug.Log ("Killing self");
+					Object.Destroy (this.gameObject);
+					
+				}
 			}
-			else
-			{
-				/* Done, remove this game object? lol */
-				Debug.Log ("Killing self");
-				Object.Destroy (this.gameObject);
-			}
+		}
+		else
+		{
+			
+		}
+	}
+	
+	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+	{
+		if (!stream.isWriting)
+		{
+			
 		}
 	}
 	
@@ -69,7 +89,7 @@ public class WaypointMover : Pathfinding
 			
 			transform.LookAt(Path[0]);
 			
-			//animation.Play ("run");
+			animation.Play ("run");
 			
 			if (Vector3.Distance (transform.position, Path[0]) < 0.1f)
 				Path.RemoveAt (0);

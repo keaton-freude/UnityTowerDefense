@@ -1,10 +1,22 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GridDraw : MonoBehaviour {
 	
 	Vector3 StartPos = new Vector3(0, 90.2f, 0);
 	Vector3 EndPos = new Vector3(0, 90.2f, 0);
+	
+	public Transform CurrentlySelectedAura = null;
+	
+	public GameObject CurrentlySelectedTower = null;
+	
+	public List<Vector2> InvalidTiles;
+	
+	public GameObject LastTower = null;
+	public Vector2 LastTowerLocation = Vector2.zero;
+	
+	public List<GameObject> Waypoints;
 	
 	public GameObject towerobj;
 	public GameObject cubeobj;
@@ -33,11 +45,10 @@ public class GridDraw : MonoBehaviour {
 			
 			if (Physics.Raycast (ray, out hit))
 			{
-				Debug.Log (TransformCoordinatesToGrid(hit.point));
 				
 				Vector3 transformedLocation = TransformGridToArray(hit.point);
 				/* Check to see if a tower already exists */
-				if (!GameMaster.Instance.map.IsTowerBuilt((int)transformedLocation.x, (int)transformedLocation.z))
+				if (!GameMaster.Instance.map.IsTowerBuilt((int)transformedLocation.x, (int)transformedLocation.z) && !InvalidTiles.Contains(new Vector2(transformedLocation.x, transformedLocation.z)))
 				{
 					/* No tower exists, set the value in the map */
 					GameMaster.Instance.map.AddTower((int)transformedLocation.x, (int)transformedLocation.z);
@@ -45,19 +56,151 @@ public class GridDraw : MonoBehaviour {
 					Debug.Log (transformedLocation);
 					
 					/* Then instantiate the tower at the location */
-					Vector3 finalLocation = TransformGridToWorldSpace(transformedLocation) + new Vector3(5f, 0, 5.5f);
+					Vector3 finalLocation = TransformGridToWorldSpace(transformedLocation) + new Vector3(5.0f, 0, 5.5f);
 					
 					finalLocation += new Vector3(0f, 0, 0);
+					string prefabString = "";
 					
-					GameObject go = Instantiate(Resources.Load ("MagicTowerPrefab"), finalLocation, Quaternion.identity) as GameObject;
+					//if (Random.value >.5f)
+					//	prefabString = "OtherTowerPrefab";
+					//else
+					prefabString = "MagicTowerPrefab";
+				
+					GameObject go = Network.Instantiate(Resources.Load (prefabString), finalLocation, Quaternion.identity, 0) as GameObject;
+
+					GameMaster.Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower = go;
+					LastTower = go;
+					LastTowerLocation = new Vector2(transformedLocation.x, transformedLocation.z);
 					
-					//go.GetComponent<ArrowFire>().arrowTarget = GameObject.FindGameObjectWithTag ("Enemy");
-					//go.GetComponent<ArrowFire>().arrowPrefab = Resources.Load ("ArrowPrefab") as GameObject;
+					/* Now Check the Route */
+					for(int i = 0; i < Waypoints.Count - 1; ++i)
+					{
+						Pathfinder.Instance.InsertInQueue(Waypoints[i].transform.position, Waypoints[i+1].transform.position, CheckRoute);
+					}
+				
+				
+				}
+			}
+		}
+		else if (Input.GetMouseButtonDown (0))
+		{
+			Ray ray = camera.ScreenPointToRay( Input.mousePosition );
+			RaycastHit hit = new RaycastHit();
+            if (Physics.Raycast(ray, out hit))
+            {
+                Vector3 transformedLocation = TransformGridToArray(hit.point);
+
+                if (GameMaster.Instance.map.IsTowerBuilt((int)transformedLocation.x, (int)transformedLocation.z))
+                {
+                    TowerInfo towerInfo = GameMaster.Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower.GetComponent<TowerInfo>();
+
+                    /* if a tower is built, lets grab the name and send it to the HUD */
+                    GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>().SelectedTower = towerInfo;
+
+                    Transform[] childrenInThisObject = GameMaster.Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower.GetComponentsInChildren<Transform>();
+
+                    if (CurrentlySelectedTower != null)
+                    {
+                        /* turn it off */
+                        TurnOffOutline(CurrentlySelectedTower);
+                    }
+
+                    CurrentlySelectedTower = GameMaster.Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower;
+                    TurnOnOutline(CurrentlySelectedTower);
+
+
+
+                }
+                else
+                {
+                    /* User selected the ground, clear the SelectedTower */
+                    GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>().SelectedTower = null;
+
+                    if (CurrentlySelectedTower != null)
+                    {
+                        /* turn it off */
+                        TurnOffOutline(CurrentlySelectedTower);
+                    }
+                }
+            }
+		}
+		else if (Input.GetMouseButton(1) && Input.GetKey(KeyCode.LeftShift))
+		{
+			Ray ray = camera.ScreenPointToRay( Input.mousePosition );
+			RaycastHit hit = new RaycastHit();
+			
+			if (Physics.Raycast (ray, out hit))
+			{
+				
+				Vector3 transformedLocation = TransformGridToArray(hit.point);
+				/* Check to see if a tower already exists */
+				if (GameMaster.Instance.map.IsTowerBuilt((int)transformedLocation.x, (int)transformedLocation.z))
+				{
+					
+					GameMaster.Instance.map.RemoveTower((int)transformedLocation.x, (int)transformedLocation.z);
+										/* Then instantiate the tower at the location */
+
+					Network.Destroy (GameMaster.Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower.GetComponent<NetworkView>().viewID);
+					
 					
 				}
 			}
 		}
 	}
+	
+	public void TurnOnOutline(GameObject go)
+	{
+		Transform[] childrenInObject = go.GetComponentsInChildren<Transform>();
+		
+		foreach (Transform child in childrenInObject)
+		{
+			if (child.tag == "Selector")
+			{
+				child.GetComponent<MeshRenderer>().enabled = true;
+			}
+
+            if (child.tag == "Aura")
+            {
+                /* found it. Enable it */
+                child.GetComponent<MeshRenderer>().enabled = true;
+            }
+		}
+		
+	}
+	
+	public void TurnOffOutline(GameObject go)
+	{
+		Transform[] childrenInObject = go.GetComponentsInChildren<Transform>();
+		
+		foreach (Transform child in childrenInObject)
+		{
+			if (child.tag == "Selector")
+			{
+				child.GetComponent<MeshRenderer>().enabled = false;
+			}
+
+            if (child.tag == "Aura")
+            {
+                /* found it. Disable it */
+                child.GetComponent<MeshRenderer>().enabled = false;
+            }
+		}
+	}
+	
+	private void CheckRoute(List<Vector3> list)
+    {     
+        //If we get a list that is empty there is no path, and we blocked the road
+        //Then remove the last added tower!
+        if (list.Count < 1 || list == null)
+        {
+			if (LastTower != null)
+			{
+				GameMaster.Instance.map.RemoveTower((int)LastTowerLocation.x, (int)LastTowerLocation.y);
+				Network.Destroy (LastTower);
+				LastTower = null;
+			}
+        }
+    }
 	
 	void OnDrawGizmos()
 	{
@@ -68,7 +211,7 @@ public class GridDraw : MonoBehaviour {
 		{
 			StartPos.z = i;
 			EndPos.z = i;
-			//Debug.DrawLine (StartPos, EndPos, Color.white, 1.0f, false);
+			//Gizmos.DrawLine (StartPos, EndPos);
 		}
 	}
 	
