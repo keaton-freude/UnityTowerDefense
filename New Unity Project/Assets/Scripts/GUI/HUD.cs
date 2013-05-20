@@ -38,11 +38,11 @@ public class HUD : MonoBehaviour
 	
 	/* Home / Sell / Build Buttons */
 	public Rect HomeRect;
-	public Rect SellRect;
+	public Rect MobRect;
 	public Rect BuildRect;
 	
 	public string HomeString = "HOME";
-	public string SellString = "MOBS";
+	public string MobString = "MOBS";
 	public string BuildString = "BUILD";
 	
 	/* Minimap Buttons */
@@ -72,130 +72,132 @@ public class HUD : MonoBehaviour
     // Use this for initialization
     void Start () 
     {
-    	GridLocation = new Vector2(Screen.width * 0.7536458f, Screen.height * 0.768518f);
-	
-		IconDimensions = new Vector2(Screen.width * 0.0432291667f, Screen.height * 0.06389f);
+        BuildGUIRects();
+	}
+
+    /* Builds rects for each GUI component based on a 16:9 aspect ratio */
+    private void BuildGUIRects()
+    {
+        /* GridLocation refers to the location of the Tower-Build grid or the Monster-Send grid */
+        GridLocation = new Vector2(Screen.width * 0.7536458f, Screen.height * 0.768518f);
+        /* The dimensions of the Icons for the Tower or Monster grid */
+        IconDimensions = new Vector2(Screen.width * 0.0432291667f, Screen.height * 0.06389f);
+        GapBetweenIcons_Width = Screen.width * 0.0041666f;
+        GapBetweenIcons_Height = Screen.height * 0.0041667f;
+        /*                  -------------                       */
 
 
+        /* The location and dimensions of the tooltips for the Tower and Monster grid */
         TooltipWidth = 0.23072916f * Screen.width;
         TooltipHeight = 0.1694444f * Screen.height;
         TooltipY = 0.5777777f * Screen.height;
-		GapBetweenIcons_Width = Screen.width * 0.0041666f;
-		
-		GapBetweenIcons_Height = Screen.height * 0.0041667f;
-		
-		HomeRect = new Rect(Screen.width * 0.5666f, Screen.height * 0.91851f, Screen.width * 0.0328125f, Screen.height * 0.0583333f);
-		SellRect = new Rect(Screen.width * 0.65520833f, Screen.height * 0.91851f, Screen.width * 0.0328125f, Screen.height * 0.0583333f);
-		BuildRect = new Rect(Screen.width * 0.697395833f, Screen.height * 0.91851f, Screen.width * 0.03333333f, Screen.height * 0.0583333f);
-		
-		MinimapRect1 = new Rect(Screen.width * 0.15416666666667f, Screen.height * 0.72777f, Screen.width * 0.0166666666667f, Screen.height * 0.0287037037037037037037037037037f);
-		MinimapRect2 = new Rect(Screen.width * 0.15416666666667f, Screen.height * 0.7620370f, Screen.width * 0.0166666666667f, Screen.height * 0.0287037037037037037037037037037f);
-		MinimapRect3 = new Rect(Screen.width * 0.15416666666667f, Screen.height * 0.7962962f, Screen.width * 0.0166666666667f, Screen.height * 0.0287037037037037037037037037037f);
-		
-		SelectedTowerLevelRect = new Rect(0.3234375f * Screen.width, Screen.height * 0.796296f, Screen.width * 0.0114583f, Screen.height * 0.019444f);
-		SelectedTowerNameRect = new Rect(Screen.width * 0.3390625f, Screen.height * 0.796296f, Screen.width * 0.1546875f, Screen.height * 0.019444f);
-		SelectedTowerKillCounterRect = new Rect(Screen.width * 0.50625f, Screen.height * 0.796296f, Screen.width * 0.04270833f, Screen.height * 0.019444f);
-		
-		//SelectedTowerLevel = 99;
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	
-	}
-	
-	void OnGUI()
-	{
-		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), HUD_OVERLAY_TEXTURE, ScaleMode.StretchToFill, true);
-		
-		/* Iterate through our monster data and draw the choices to the screen */
-		int count = 0;
-		int ycount = 0;
-		GUI.skin = gameGuiStyle;
-		
-		#region MonsterGrid
-        if (MonsterBuildMenuSelected)
-        {
-            foreach (MonsterData md in MonsterData)
-            {
-                gameGuiStyle.button.normal.background = md.iconTexture;
-                gameGuiStyle.button.hover.background = md.iconTexture;
+        /*                  -------------                       */
 
-                if (GUI.Button(new Rect(GridLocation.x + (count * (IconDimensions.x + GapBetweenIcons_Width)),
+        HomeRect = new Rect(Screen.width * 0.5666f, Screen.height * 0.91851f, Screen.width * 0.0328125f, Screen.height * 0.0583333f);
+        MobRect = new Rect(Screen.width * 0.65520833f, Screen.height * 0.91851f, Screen.width * 0.0328125f, Screen.height * 0.0583333f);
+        BuildRect = new Rect(Screen.width * 0.697395833f, Screen.height * 0.91851f, Screen.width * 0.03333333f, Screen.height * 0.0583333f);
+
+        MinimapRect1 = new Rect(Screen.width * 0.15416666666667f, Screen.height * 0.72777f, Screen.width * 0.0166666666667f, Screen.height * 0.0287037037037037037037037037037f);
+        MinimapRect2 = new Rect(Screen.width * 0.15416666666667f, Screen.height * 0.7620370f, Screen.width * 0.0166666666667f, Screen.height * 0.0287037037037037037037037037037f);
+        MinimapRect3 = new Rect(Screen.width * 0.15416666666667f, Screen.height * 0.7962962f, Screen.width * 0.0166666666667f, Screen.height * 0.0287037037037037037037037037037f);
+
+        SelectedTowerLevelRect = new Rect(0.3234375f * Screen.width, Screen.height * 0.796296f, Screen.width * 0.0114583f, Screen.height * 0.019444f);
+        SelectedTowerNameRect = new Rect(Screen.width * 0.3390625f, Screen.height * 0.796296f, Screen.width * 0.1546875f, Screen.height * 0.019444f);
+        SelectedTowerKillCounterRect = new Rect(Screen.width * 0.50625f, Screen.height * 0.796296f, Screen.width * 0.04270833f, Screen.height * 0.019444f);
+    }
+
+    private void DrawMonsterGrid()
+    {
+        int count = 0;
+        int ycount = 0;
+        GUI.skin = gameGuiStyle;
+        foreach (MonsterData md in MonsterData)
+        {
+            gameGuiStyle.button.normal.background = md.iconTexture;
+            gameGuiStyle.button.hover.background = md.iconTexture;
+
+            if (GUI.Button(new Rect(GridLocation.x + (count * (IconDimensions.x + GapBetweenIcons_Width)),
+            GridLocation.y + (ycount * (IconDimensions.y + GapBetweenIcons_Height)),
+                IconDimensions.x, IconDimensions.y), new GUIContent("", md.description), "button"))
+            {
+                MonsterManager.GetComponent<MonsterManager>().CreateMonster(md.prefab.name);
+            }
+            GUI.Label(new Rect(GridLocation.x, TooltipY, TooltipWidth, TooltipHeight), GUI.tooltip);
+            count++;
+            if (count == ICONS_PER_ROW - 1)
+            {
+                count = 0;
+                ycount++;
+            }
+
+        }
+        GUI.skin = null;
+    }
+
+    private void DrawTowerGrid()
+    {
+        int count = 0;
+        int ycount = 0;
+        GUI.skin = gameGuiStyle;
+        foreach (TowerData td in TowerData)
+        {
+            gameGuiStyle.button.normal.background = td.iconTexture;
+            gameGuiStyle.button.hover.background = td.iconTexture;
+
+            if (GUI.Button(new Rect(GridLocation.x + (count * (IconDimensions.x + GapBetweenIcons_Width)),
                 GridLocation.y + (ycount * (IconDimensions.y + GapBetweenIcons_Height)),
-                    IconDimensions.x, IconDimensions.y), new GUIContent("", md.description), "button"))
-                {
-                    MonsterManager.GetComponent<MonsterManager>().CreateMonster(md.prefab.name);
-                }
-                GUI.Label(new Rect(GridLocation.x,TooltipY, TooltipWidth, TooltipHeight), GUI.tooltip);
-                count++;
-                if (count == ICONS_PER_ROW - 1)
-                {
-                    count = 0;
-                    ycount++;
-                }
-
-            }
-        }
-        else
-        {
-            /* Draw build menu for given player */
-            foreach (TowerData td in TowerData)
+                IconDimensions.x, IconDimensions.y), new GUIContent("", td.description), "button"))
             {
-                gameGuiStyle.button.normal.background = td.iconTexture;
-                gameGuiStyle.button.hover.background = td.iconTexture;
-
-                if (GUI.Button(new Rect(GridLocation.x + (count * (IconDimensions.x + GapBetweenIcons_Width)),
-                    GridLocation.y + (ycount * (IconDimensions.y + GapBetweenIcons_Height)),
-                    IconDimensions.x, IconDimensions.y), new GUIContent("", td.description), "button"))
-                {
-                    /* Set this tower as the tower to be built */
-                }
-                GUI.Label(new Rect(GridLocation.x, GridLocation.y - 100, 300, 80), GUI.tooltip);
-                count++;
-                if (count == ICONS_PER_ROW - 1)
-                {
-                    count = 0;
-                    ycount++;
-                }
+                /* Set this tower as the tower to be built */
+            }
+            GUI.Label(new Rect(GridLocation.x, GridLocation.y - 100, 300, 80), GUI.tooltip);
+            count++;
+            if (count == ICONS_PER_ROW - 1)
+            {
+                count = 0;
+                ycount++;
             }
         }
-		#endregion
-		GUI.skin = null;
-		#region HomeBuildSellButtons
-		if (GUI.Button (HomeRect, HomeString) || Input.GetKeyDown(KeyCode.H))
-		{
-			Camera.main.GetComponent<RTSCameraMove>().MoveToHome();
-		}
-		
-		if (GUI.Button (SellRect, SellString))
-		{
+        GUI.skin = null;
+    }
+
+    private void DrawHomeMobBuild()
+    {
+        if (GUI.Button(HomeRect, HomeString) || Input.GetKeyDown(KeyCode.H))
+        {
+            Camera.main.GetComponent<RTSCameraMove>().MoveToHome();
+        }
+
+        if (GUI.Button(MobRect, MobString))
+        {
             MonsterBuildMenuSelected = true;
-		}
-		
-		if (GUI.Button (BuildRect, BuildString))
-		{
+        }
+
+        if (GUI.Button(BuildRect, BuildString))
+        {
             MonsterBuildMenuSelected = false;
-		}
-		#endregion
-		
-		#region MinimapButtons
-		if (GUI.Button (MinimapRect1, MinimapString1))
-		{
-			
-		}
-		
-		if (GUI.Button (MinimapRect2, MinimapString2))
-		{
-		}
-		
-		if (GUI.Button (MinimapRect3, MinimapString3))
-		{
-		}
-		#endregion
-		GUI.skin = gameGuiStyle;
-		#region SelectedTower
+        }
+    }
+
+    private void DrawMinimapButtons()
+    {
+        if (GUI.Button(MinimapRect1, MinimapString1))
+        {
+
+        }
+
+        if (GUI.Button(MinimapRect2, MinimapString2))
+        {
+        }
+
+        if (GUI.Button(MinimapRect3, MinimapString3))
+        {
+        }
+    }
+
+    private void DrawSelectedTowerInfo()
+    {
+        GUI.skin = gameGuiStyle;
         if (SelectedTower != null)
         {
             GUI.Label(SelectedTowerLevelRect, SelectedTower.TowerLevel.ToString());
@@ -209,35 +211,43 @@ public class HUD : MonoBehaviour
             GUI.Label(SelectedTowerNameRect, "");
             GUI.Label(SelectedTowerKillCounterRect, "");
         }
-		#endregion
-		
-		
-		if (GUI.Button (new Rect(500, 25, 100, 25), "Create Server"))
-		{
-			Network.incomingPassword = "HolyMoly";
-			Network.InitializeServer(32, 25000, true);
-		}
-		if (GUI.Button (new Rect(500, 50, 100, 25), "Join Server"))
-		{
-			Network.Connect ("71.237.249.213", 25000, "HolyMoly");
-		}
-	}
-	public int count = 0;
-	
-	IEnumerator MyMethod()
+        GUI.skin = null;
+    }
+
+    /* Draws Misc functions such as debug functions, items that should not make it in the final build */
+    private void DrawMisc()
+    {
+        if (GUI.Button(new Rect(500, 25, 100, 25), "Create Server"))
+        {
+            Network.incomingPassword = "HolyMoly";
+            Network.InitializeServer(32, 25000, true);
+        }
+        if (GUI.Button(new Rect(500, 50, 100, 25), "Join Server"))
+        {
+            Network.Connect("71.237.249.213", 25000, "HolyMoly");
+        }
+    }
+
+	void OnGUI()
 	{
-		while (true)
-		{
-			Stopwatch sw = new Stopwatch();
-			sw.Start();
-			MonsterManager.GetComponent<MonsterManager>().CreateMonster("SkeletonPrefab");
-			sw.Stop();
-			
-			
-			UnityEngine.Debug.Log("Count: " + count + " - " +sw.ElapsedMilliseconds);
-			count++;
-			
-			yield return new WaitForSeconds(2.25f);
-		}
+        /* Draw the HUD texture */
+		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), HUD_OVERLAY_TEXTURE, ScaleMode.StretchToFill, true);
+
+        if (MonsterBuildMenuSelected)
+        {
+            DrawMonsterGrid();
+        }
+        else
+        {
+            DrawTowerGrid();
+        }
+
+        DrawHomeMobBuild();
+
+        DrawMinimapButtons(); 
+        
+        DrawSelectedTowerInfo();
+
+        DrawMisc();
 	}
 }
