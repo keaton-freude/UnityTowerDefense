@@ -4,11 +4,32 @@ using System.Collections.Generic;
 
 public class GameMaster: Pathfinding
 {
+	/* 0: We're in the process of creating the server
+	 * 	  and waiting for players to connect. This state is valid
+	 *    for only 10 seconds. Otherwise failure.
+	 * 1: Player's are voting on mode, generic countdown to game
+	 *    start.
+	 * 2: Game is actively being played.
+	 * 3: Game score is being shown.
+	 */
+	public enum GAMESTATE
+	{
+		UTD_GAMESTATE_NETWORKINIT = 0,
+		UTD_GAMESTATE_PREGAME = 1,
+		UTD_GAMESTATE_PLAYGAME = 2,
+		UTD_GAMESTATE_POSTGAME = 3
+	}
+	public GAMESTATE gameState = GAMESTATE.UTD_GAMESTATE_NETWORKINIT;
 	public Map map;
-	
+	public int NumberOfExpectedPlayers = 2;
+	/* Server is always counted as 1 */
+	public int NumberOfPlayersInGame = 1;
 	private static GameMaster instance;
-
+	public string HostIP = "127.0.0.1";
     public Transform floatingTextPrefab;
+	
+	public int Team1Lives = 30;
+	public int Team2Lives = 30;
 
     public void SpawnFloatingDamage(int damage, float x, float y)
     {
@@ -53,6 +74,7 @@ public class GameMaster: Pathfinding
 	// Use this for initialization
 	void Start () 
 	{
+		gameState = GAMESTATE.UTD_GAMESTATE_NETWORKINIT;
 		if (GameObject.FindGameObjectWithTag("LoadParameters").GetComponent<LoadParameters>().CreateServer)
 		{
 			/* Create Server */
@@ -68,10 +90,76 @@ public class GameMaster: Pathfinding
 		}
 	}
 	
+	public bool CRASH = false;
+	
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		if (!CRASH)
+		{
+			/* The gamemaster will continually poll and watch the game to determine whats going on */
+			string DebugInfo = "";
+			/* DEBUG */
+			//First, lets keep track of our current state...
+			DebugInfo += "GameState: " + gameState.ToString();
+			
+			/* Next, switch on the current state, and we'll see whats up */
+			switch (gameState)
+			{
+				case GAMESTATE.UTD_GAMESTATE_NETWORKINIT:
+					if (false)
+					{
+						/* We're the server, also we're guaranteed to be connected at this point */
+						/* Lets output the # of connected players */
+						DebugInfo += " | # CONNECTIONS: " + Network.connections.Length.ToString();
+					
+						//Next, check that number against the expected #
+						if (Network.connections.Length == NumberOfExpectedPlayers)
+						{
+							//Everyone is in! Begin pre-game
+							gameState = GAMESTATE.UTD_GAMESTATE_PREGAME;
+						
+							//Note, we likely have a lot to do here, but for now this is ok
+						}
+					}
+					else
+					{
+						//Now this part is substantially more interesting
+						//I should know if I'm the host for this game or not, this else
+						//branch is entered when i *know* i'm NOT the host. Therefore, i should try and
+					    //connect to the provided IP
+					
+						NetworkConnectionError nce = Network.Connect(HostIP, 25000, "HolyMoly");
+						
+						if (nce == NetworkConnectionError.ConnectionFailed)
+						{
+							/* Something went wrong, put message on screen, do not try again */
+							DebugInfo += " CONNECTION FAILED, ABORTING. RESTART TO TRY AGAIN";
+							CRASH = true;
+						}
+						else if (nce == NetworkConnectionError.NoError)
+						{
+							Debug.Log ("Connection success");
+							gameState = GAMESTATE.UTD_GAMESTATE_PREGAME;
+						}
+						else
+						{
+							Debug.Log ("Network Connection Error: " + nce.ToString());
+						}
+						
+					}
+					break;
+				case GAMESTATE.UTD_GAMESTATE_PREGAME:
+					break;
+				case GAMESTATE.UTD_GAMESTATE_PLAYGAME:
+					break;
+				case GAMESTATE.UTD_GAMESTATE_POSTGAME:
+					break;
+				default:
+					break;
+			}
+			GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>().DebugString = DebugInfo;
+		}
 	}
 
     void OnFailedToConnect(NetworkConnectionError error)

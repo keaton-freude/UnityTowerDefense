@@ -1,4 +1,5 @@
 using UnityEngine;
+
 using System.Collections;
 
 public class RTSCameraMove : MonoBehaviour 
@@ -24,6 +25,8 @@ public class RTSCameraMove : MonoBehaviour
 	void Start () 
 	{
 		myTransform = transform;
+		System.Environment.GetCommandLineArgs();
+		string[] args = System.Environment.GetCommandLineArgs();
 	}
 	
 	// Update is called once per frame

@@ -66,6 +66,10 @@ public class HUD : MonoBehaviour
     public float TooltipWidth;
     public float TooltipHeight;
     public float TooltipY;
+	
+	/* Debug info */
+	public Rect DebugRect = new Rect(0, 0, Screen.width, 40);
+	public string DebugString = "TEST DEBUG";
 
 
 	
@@ -226,6 +230,8 @@ public class HUD : MonoBehaviour
         {
             Network.Connect("71.237.249.213", 25000, "HolyMoly");
         }
+		
+		GUI.Label(DebugRect, DebugString);
     }
 
 	void OnGUI()

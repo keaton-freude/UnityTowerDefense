@@ -232,6 +232,7 @@ MonoBehaviour:
   Path: []
   PathType: 0
   JS: 0
+  gameState: 0
   floatingTextPrefab: {fileID: 400000, guid: 0e2a957ffbb17ce468e5d6d5d7af6d75, type: 2}
 --- !u!4 &311146907
 Transform:
@@ -1236,3 +1237,10 @@ MonoBehaviour:
   TooltipWidth: 0
   TooltipHeight: 0
   TooltipY: 0
+  DebugRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1000
+    height: 40
+  DebugString: TEST DEBUG
