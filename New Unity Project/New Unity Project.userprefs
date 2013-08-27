@@ -1,21 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Misc-Test\GameMaster.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Temp\Compiled-Normal-Diffuse.shader">
     <Files>
-      <File FileName="Assets\Scripts\Misc-Test\GridDraw.cs" Line="39" Column="17" />
-      <File FileName="Assets\Scripts\GUI\HUD.cs" Line="71" Column="39" />
+      <File FileName="Assets\Scripts\Misc-Test\GridDraw.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\HUD.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Misc-Test\MonsterData.cs" Line="1" Column="1" />
       <File FileName="Assets\TowerInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Misc-Test\GameMaster.cs" Line="143" Column="31" />
+      <File FileName="Assets\Scripts\Misc-Test\GameMaster.cs" Line="1" Column="1" />
       <File FileName="Assets\MainMenuHUD.cs" Line="1" Column="1" />
       <File FileName="Assets\MonsterManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Waypoints.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Movement\WaypointMover.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Misc-Test\DummyDraw.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraScripts\RTSCameraMove.cs" Line="27" Column="27" />
+      <File FileName="Assets\Scripts\CameraScripts\RTSCameraMove.cs" Line="1" Column="1" />
       <File FileName="Assets\DaylightCycle.cs" Line="1" Column="1" />
       <File FileName="Assets\TestHPBar.cs" Line="1" Column="1" />
-      <File FileName="Assets\TestGUI.cs" Line="1" Column="1" />
       <File FileName="Assets\MovementScript.cs" Line="1" Column="1" />
       <File FileName="Assets\LoadParameters.cs" Line="1" Column="1" />
       <File FileName="Assets\Pathfinding\Scripts\Pathfinder.cs" Line="1" Column="1" />
@@ -26,6 +25,12 @@
       <File FileName="Assets\Pathfinding\Scenes\Scripts\AI.cs" Line="1" Column="1" />
       <File FileName="Assets\Pathfinding\Scripts\DynamicTDGridObject.cs" Line="1" Column="1" />
       <File FileName="Assets\Pathfinding\Scripts\Pathfinding.cs" Line="1" Column="1" />
+      <File FileName="Assets\HealthbarScript.cs" Line="33" Column="5" />
+      <File FileName="Assets\Scripts\Projectile\MoveArrow.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\SetPivot.cs" Line="125" Column="2" />
+      <File FileName="Assets\HPBarShader.shader" Line="11" Column="2" />
+      <File FileName="Assets\NewShader.shader" Line="3" Column="3" />
+      <File FileName="Temp\Compiled-Normal-Diffuse.shader" Line="3" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

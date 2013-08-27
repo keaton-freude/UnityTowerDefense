@@ -171,7 +171,7 @@ GameObject:
   - 4: {fileID: 400016}
   - 111: {fileID: 11100006}
   m_Layer: 0
-  m_Name: skeletonDark
+  m_Name: h
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

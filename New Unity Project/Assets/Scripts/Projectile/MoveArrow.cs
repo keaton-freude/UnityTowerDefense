@@ -64,7 +64,7 @@ public class MoveArrow : MonoBehaviour {
 		
 		if (other.tag == "Enemy")
 		{
-            other.gameObject.GetComponent<TestGUI>().CurrentHP -= damage;
+            other.gameObject.GetComponent<MobStats>().TakeDamage(damage);
             var v = Camera.main.WorldToViewportPoint(other.transform.position);
             GameMaster.Instance.SpawnFloatingDamage(damage, v.x, v.y);
 			if (this.gameObject != null)
