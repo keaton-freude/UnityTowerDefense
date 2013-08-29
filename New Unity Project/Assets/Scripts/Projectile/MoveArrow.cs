@@ -66,9 +66,14 @@ public class MoveArrow : MonoBehaviour {
 		{
             other.gameObject.GetComponent<MobStats>().TakeDamage(damage);
             var v = Camera.main.WorldToViewportPoint(other.transform.position);
-            GameMaster.Instance.SpawnFloatingDamage(damage, v.x, v.y);
+			GameMaster Instance = GameObject.Find ("__GameMaster").GetComponent<GameMaster>();
+            Instance.SpawnFloatingDamage(damage, v.x, v.y);
 			if (this.gameObject != null)
+			{
 				Network.Destroy (this.gameObject);
+				
+				//this = null;
+			}
 			
 			
 		}

@@ -28,13 +28,13 @@ public class GameMaster: Pathfinding
 	public string HostIP = "127.0.0.1";
     public Transform floatingTextPrefab;
 	
+	public bool IsServer = true;
+	
 	public int Team1Lives = 30;
 	public int Team2Lives = 30;
 
     public void SpawnFloatingDamage(int damage, float x, float y)
     {
-
-
         var gui = Instantiate(Resources.Load("FloatingTextPrefab"), new Vector3(x, y, 0), Quaternion.identity) as GameObject;
 
         gui.guiText.text = damage.ToString();
@@ -56,17 +56,7 @@ public class GameMaster: Pathfinding
         return true;
     }
 	
-	public static GameMaster Instance
-	{
-		get
-		{
-            if (instance == null)
-                instance = new GameObject("GameMaster").AddComponent<GameMaster>();
-			return instance;
-		}
-	}
-	
-	private GameMaster()
+	public GameMaster()
 	{
 		map = new Map();
 	}
@@ -75,91 +65,57 @@ public class GameMaster: Pathfinding
 	void Start () 
 	{
 		gameState = GAMESTATE.UTD_GAMESTATE_NETWORKINIT;
-		if (GameObject.FindGameObjectWithTag("LoadParameters").GetComponent<LoadParameters>().CreateServer)
+
+		if (!IsServer)
 		{
-			/* Create Server */
-			Network.incomingPassword = "HolyMoly";
-            Network.InitializeServer(32, 25000, true);
+			Debug.Log ("Initting Connection");
+			Network.Connect(HostIP, 25000, "HolyMoly");
+			InitConnection = true;
 		}
 		else
 		{
-			/* Join Server */
-            NetworkConnectionError error = Network.Connect(GameObject.FindGameObjectWithTag("LoadParameters").GetComponent<LoadParameters>().IPAddress, 25000, "HolyMoly");
-
-            Debug.Log("Joining Server: " + GameObject.FindGameObjectWithTag("LoadParameters").GetComponent<LoadParameters>().IPAddress);
+			Debug.Log ("Creating Server");
+			Network.incomingPassword  = "HolyMoly";
+			Network.InitializeServer(10, 25000, true);
+			//Next, check that number against the expected 
 		}
+		
 	}
 	
-	public bool CRASH = false;
+	public bool InitConnection = false;
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (!CRASH)
+		/* The gamemaster will continually poll and watch the game to determine whats going on */
+		string DebugInfo = "";
+		/* DEBUG */
+		//First, lets keep track of our current state...
+		DebugInfo += "GameState: " + gameState.ToString();
+		
+		/* Next, switch on the current state, and we'll see whats up */
+		switch (gameState)
 		{
-			/* The gamemaster will continually poll and watch the game to determine whats going on */
-			string DebugInfo = "";
-			/* DEBUG */
-			//First, lets keep track of our current state...
-			DebugInfo += "GameState: " + gameState.ToString();
-			
-			/* Next, switch on the current state, and we'll see whats up */
-			switch (gameState)
-			{
-				case GAMESTATE.UTD_GAMESTATE_NETWORKINIT:
-					if (false)
-					{
-						/* We're the server, also we're guaranteed to be connected at this point */
-						/* Lets output the # of connected players */
-						DebugInfo += " | # CONNECTIONS: " + Network.connections.Length.ToString();
-					
-						//Next, check that number against the expected #
-						if (Network.connections.Length == NumberOfExpectedPlayers)
-						{
-							//Everyone is in! Begin pre-game
-							gameState = GAMESTATE.UTD_GAMESTATE_PREGAME;
-						
-							//Note, we likely have a lot to do here, but for now this is ok
-						}
-					}
-					else
-					{
-						//Now this part is substantially more interesting
-						//I should know if I'm the host for this game or not, this else
-						//branch is entered when i *know* i'm NOT the host. Therefore, i should try and
-					    //connect to the provided IP
-					
-						NetworkConnectionError nce = Network.Connect(HostIP, 25000, "HolyMoly");
-						
-						if (nce == NetworkConnectionError.ConnectionFailed)
-						{
-							/* Something went wrong, put message on screen, do not try again */
-							DebugInfo += " CONNECTION FAILED, ABORTING. RESTART TO TRY AGAIN";
-							CRASH = true;
-						}
-						else if (nce == NetworkConnectionError.NoError)
-						{
-							Debug.Log ("Connection success");
-							gameState = GAMESTATE.UTD_GAMESTATE_PREGAME;
-						}
-						else
-						{
-							Debug.Log ("Network Connection Error: " + nce.ToString());
-						}
-						
-					}
-					break;
-				case GAMESTATE.UTD_GAMESTATE_PREGAME:
-					break;
-				case GAMESTATE.UTD_GAMESTATE_PLAYGAME:
-					break;
-				case GAMESTATE.UTD_GAMESTATE_POSTGAME:
-					break;
-				default:
-					break;
-			}
-			GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>().DebugString = DebugInfo;
+			case GAMESTATE.UTD_GAMESTATE_NETWORKINIT:
+
+				break;
+			case GAMESTATE.UTD_GAMESTATE_PREGAME:
+				break;
+			case GAMESTATE.UTD_GAMESTATE_PLAYGAME:
+				break;
+			case GAMESTATE.UTD_GAMESTATE_POSTGAME:
+				break;
+			default:
+				break;
 		}
+		GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>().DebugString = DebugInfo;
+		
+	}
+	
+	void OnConnectedToServer()
+	{
+		Debug.Log ("Connected!");
+		gameState = GAMESTATE.UTD_GAMESTATE_PREGAME;
 	}
 
     void OnFailedToConnect(NetworkConnectionError error)

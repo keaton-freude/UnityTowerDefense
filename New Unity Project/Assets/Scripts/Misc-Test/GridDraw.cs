@@ -45,13 +45,14 @@ public class GridDraw : MonoBehaviour {
 			
 			if (Physics.Raycast (ray, out hit))
 			{
+				GameMaster Instance = GameObject.Find("__GameMaster").GetComponent<GameMaster>();
 				
 				Vector3 transformedLocation = TransformGridToArray(hit.point);
 				/* Check to see if a tower already exists */
-				if (!GameMaster.Instance.map.IsTowerBuilt((int)transformedLocation.x, (int)transformedLocation.z) && !InvalidTiles.Contains(new Vector2(transformedLocation.x, transformedLocation.z)))
+				if (!Instance.map.IsTowerBuilt((int)transformedLocation.x, (int)transformedLocation.z) && !InvalidTiles.Contains(new Vector2(transformedLocation.x, transformedLocation.z)))
 				{
 					/* No tower exists, set the value in the map */
-					GameMaster.Instance.map.AddTower((int)transformedLocation.x, (int)transformedLocation.z);
+					Instance.map.AddTower((int)transformedLocation.x, (int)transformedLocation.z);
 					
 					Debug.Log (transformedLocation);
 					
@@ -68,7 +69,7 @@ public class GridDraw : MonoBehaviour {
 				
 					GameObject go = Network.Instantiate(Resources.Load (prefabString), finalLocation, Quaternion.identity, 0) as GameObject;
 
-					GameMaster.Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower = go;
+					Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower = go;
 					LastTower = go;
 					LastTowerLocation = new Vector2(transformedLocation.x, transformedLocation.z);
 					
@@ -88,16 +89,17 @@ public class GridDraw : MonoBehaviour {
 			RaycastHit hit = new RaycastHit();
             if (Physics.Raycast(ray, out hit))
             {
+				GameMaster Instance = GameObject.Find("__GameMaster").GetComponent<GameMaster>();
                 Vector3 transformedLocation = TransformGridToArray(hit.point);
 
-                if (GameMaster.Instance.map.IsTowerBuilt((int)transformedLocation.x, (int)transformedLocation.z))
+                if (Instance.map.IsTowerBuilt((int)transformedLocation.x, (int)transformedLocation.z))
                 {
-                    TowerInfo towerInfo = GameMaster.Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower.GetComponent<TowerInfo>();
+                    TowerInfo towerInfo = Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower.GetComponent<TowerInfo>();
 
                     /* if a tower is built, lets grab the name and send it to the HUD */
                     GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>().SelectedTower = towerInfo;
 
-                    Transform[] childrenInThisObject = GameMaster.Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower.GetComponentsInChildren<Transform>();
+                    Transform[] childrenInThisObject = Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower.GetComponentsInChildren<Transform>();
 
                     if (CurrentlySelectedTower != null)
                     {
@@ -105,7 +107,7 @@ public class GridDraw : MonoBehaviour {
                         TurnOffOutline(CurrentlySelectedTower);
                     }
 
-                    CurrentlySelectedTower = GameMaster.Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower;
+                    CurrentlySelectedTower = Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower;
                     TurnOnOutline(CurrentlySelectedTower);
 
 
@@ -131,16 +133,16 @@ public class GridDraw : MonoBehaviour {
 			
 			if (Physics.Raycast (ray, out hit))
 			{
-				
+				GameMaster Instance = GameObject.Find("__GameMaster").GetComponent<GameMaster>();
 				Vector3 transformedLocation = TransformGridToArray(hit.point);
 				/* Check to see if a tower already exists */
-				if (GameMaster.Instance.map.IsTowerBuilt((int)transformedLocation.x, (int)transformedLocation.z))
+				if (Instance.map.IsTowerBuilt((int)transformedLocation.x, (int)transformedLocation.z))
 				{
 					
-					GameMaster.Instance.map.RemoveTower((int)transformedLocation.x, (int)transformedLocation.z);
+					Instance.map.RemoveTower((int)transformedLocation.x, (int)transformedLocation.z);
 										/* Then instantiate the tower at the location */
 
-					Network.Destroy (GameMaster.Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower.GetComponent<NetworkView>().viewID);
+					Network.Destroy (Instance.map.map[(int)transformedLocation.x, (int)transformedLocation.z].Tower.GetComponent<NetworkView>().viewID);
 					
 					
 				}
@@ -195,7 +197,8 @@ public class GridDraw : MonoBehaviour {
         {
 			if (LastTower != null)
 			{
-				GameMaster.Instance.map.RemoveTower((int)LastTowerLocation.x, (int)LastTowerLocation.y);
+				GameMaster Instance = GameObject.Find("__GameMaster").GetComponent<GameMaster>();
+				Instance.map.RemoveTower((int)LastTowerLocation.x, (int)LastTowerLocation.y);
 				Network.Destroy (LastTower);
 				LastTower = null;
 			}

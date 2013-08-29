@@ -25,24 +25,27 @@ public class ArrowFire : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		currentTime += Time.deltaTime;
-		
-		if (currentTime >= attackCooldown)
+		if (networkView.isMine)
 		{
-			currentTime -= attackCooldown;
+			currentTime += Time.deltaTime;
 			
-			/* Create an arrow */
-			
-			GameObject closest_target = GameMaster.Instance.GetNearestEnemy(transform.position, AttackRadius);
-			
-			if (closest_target != null)
+			if (currentTime >= attackCooldown)
 			{
-				GameObject go = Network.Instantiate(Resources.Load ("ArrowPrefab"), transform.position - offset, Quaternion.identity, 0) as GameObject;
-				go.GetComponent<MoveArrow>().Target = closest_target;
-                TowerInfo ti = GetComponent<TowerInfo>();
-                go.GetComponent<MoveArrow>().damage = Random.Range(ti.GroundMinimumDamage, ti.GroundMaximumDamage);
+				currentTime -= attackCooldown;
+				
+				/* Create an arrow */
+				GameMaster Instance = GameObject.Find("__GameMaster").GetComponent<GameMaster>();
+				GameObject closest_target = Instance.GetNearestEnemy(transform.position, AttackRadius);
+				
+				if (closest_target != null)
+				{
+					GameObject go = Network.Instantiate(Resources.Load ("ArrowPrefab"), transform.position - offset, Quaternion.identity, 0) as GameObject;
+					go.GetComponent<MoveArrow>().Target = closest_target;
+	                TowerInfo ti = GetComponent<TowerInfo>();
+	                go.GetComponent<MoveArrow>().damage = Random.Range(ti.GroundMinimumDamage, ti.GroundMaximumDamage);
+				}
+				
 			}
-			
 		}
 	}
 }

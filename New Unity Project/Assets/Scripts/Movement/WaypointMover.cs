@@ -22,8 +22,11 @@ public class WaypointMover : Pathfinding
 		{
 			go.transform.localPosition = new Vector3(go.transform.localPosition.x, 90, go.transform.localPosition.z);
 		}
-		currentWaypoint = Waypoints[0];
-		Waypoints.RemoveAt (0);
+		if (Waypoints.Count != 0)
+		{
+			currentWaypoint = Waypoints[0];
+			Waypoints.RemoveAt (0);
+		}
 	}
 	
 	public void StartMoving()
@@ -62,7 +65,7 @@ public class WaypointMover : Pathfinding
 				{
 					/* Done, remove this game object? lol */
 					Debug.Log ("Killing self");
-					Object.Destroy (this.gameObject);
+					Network.Destroy (this.gameObject);
 					
 				}
 			}
