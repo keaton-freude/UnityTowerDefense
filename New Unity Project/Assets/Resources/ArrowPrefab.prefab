@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  Speed: 200
+  Speed: 100
   OnDeathEffect: {fileID: 19800000, guid: 839155b49ac7ca34ab7febf0f06f2d27, type: 2}
   myTransform: {fileID: 0}
   damage: 0

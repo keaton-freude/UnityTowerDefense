@@ -64,7 +64,6 @@
      <None Include="Assets\Scripts\Todo.txt" />
      <None Include="Assets\Standard Assets\Water (Pro Only)\Sources\Shaders\FX-Water.shader" />
      <None Include="Assets\SkeletonData\animations.txt" />
-     <None Include="Assets\NewShader.shader" />
      <None Include="Assets\Photon Unity Networking\readme.txt" />
      <None Include="Assets\ImportedAssetsAtStart\SkeletonData\animations.txt" />
      <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\WaterInclude.cginc" />

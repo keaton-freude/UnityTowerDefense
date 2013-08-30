@@ -25,9 +25,14 @@ public class MonsterManager : MonoBehaviour
 	{
 		GameObject go = Network.Instantiate(Resources.Load (prefabPath), new Vector3(250, 90, 250), Quaternion.identity, 0) as GameObject;
 		
+		
+		
+		
 		//List<GameObject> test = Waypoints.GetComponent<Waypoints>().Path1.Cop
 		
 		go.GetComponent<WaypointMover>().Waypoints = new List<GameObject>(Waypoints.GetComponent<Waypoints>().Path1);
+		
+		
 		
 		monsters.Add(go);
 		
@@ -36,4 +41,6 @@ public class MonsterManager : MonoBehaviour
 		/* Get them moving! */
 		go.GetComponent<WaypointMover>().DoMove = true;
 	}
+
+		
 }

@@ -13,7 +13,7 @@ public class MobStats: MonoBehaviour {
 	void Update () 
 	{
 		if (CurrentHP <= 0)
-			GameObject.Destroy(this.gameObject);
+			Network.Destroy(this.gameObject);
 	}
 	
 	void OnGUI()

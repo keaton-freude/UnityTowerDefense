@@ -35,47 +35,47 @@ public class MoveArrow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Target == null)
+		if (networkView.isMine)
 		{
+			if (Target == null)
+			{
+				if (this.gameObject != null)
+					Network.Destroy (this.gameObject); //we don't have a target. lets just kill ourselves :(
+				return;
+			}
+	
 			if (this.gameObject != null)
-				GameObject.Destroy (this.gameObject); //we don't have a target. lets just kill ourselves :(
-			return;
+			{
+			
+				myTransform.position = Vector3.MoveTowards(myTransform.position, Target.transform.position + offset, Time.deltaTime * Speed);
+				
+				Vector3 v1 = new Vector3 (Target.transform.position.x, this.transform.position.y, Target.transform.position.z);
+				
+				this.transform.LookAt (v1);
+			}
 		}
-		
-		if (this.gameObject != null)
-		{
-		
-			myTransform.position = Vector3.MoveTowards(myTransform.position, Target.transform.position + offset, Time.deltaTime * Speed);
-			
-			Vector3 v1 = new Vector3 (Target.transform.position.x, this.transform.position.y, Target.transform.position.z);
-			
-			this.transform.LookAt (v1);
-		}
-		
-
-			
 	}
 	
 	void OnTriggerEnter(Collider other)
 	{
-		//Debug.Log ("hello");
-		
-		
-		
 		if (other.tag == "Enemy")
 		{
-            other.gameObject.GetComponent<MobStats>().TakeDamage(damage);
+			if (networkView.isMine)
+			{
+            	other.gameObject.GetComponent<MobStats>().TakeDamage(damage);
+				if (other.gameObject != null)
+				{
+					GameObject.Find ("__NetworkManager").GetComponent<NetworkManager>().networkView.RPC ("DoDamageToMob", RPCMode.Others, other.gameObject.networkView.viewID, damage);
+				}
+			}
             var v = Camera.main.WorldToViewportPoint(other.transform.position);
 			GameMaster Instance = GameObject.Find ("__GameMaster").GetComponent<GameMaster>();
             Instance.SpawnFloatingDamage(damage, v.x, v.y);
 			if (this.gameObject != null)
 			{
 				Network.Destroy (this.gameObject);
-				
-				//this = null;
+				Debug.Log ("Arrow: Destroyed");
 			}
-			
-			
 		}
 	}
 }
