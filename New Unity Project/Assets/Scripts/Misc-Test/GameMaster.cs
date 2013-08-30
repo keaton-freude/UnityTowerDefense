@@ -66,20 +66,7 @@ public class GameMaster: Pathfinding
 	{
 		gameState = GAMESTATE.UTD_GAMESTATE_NETWORKINIT;
 
-		if (!IsServer)
-		{
-			Debug.Log ("Initting Connection");
-			Network.Connect(HostIP, 25000, "HolyMoly");
-			InitConnection = true;
-		}
-		else
-		{
-			Debug.Log ("Creating Server");
-			Network.incomingPassword  = "HolyMoly";
-			Network.InitializeServer(10, 25000, true);
-			//Next, check that number against the expected 
-		}
-		
+		GameObject.Find ("__NetworkManager").GetComponent<NetworkManager>().AtMainMenu = false;
 	}
 	
 	public bool InitConnection = false;
