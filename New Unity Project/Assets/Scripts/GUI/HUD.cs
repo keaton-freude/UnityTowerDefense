@@ -221,7 +221,7 @@ public class HUD : MonoBehaviour
     /* Draws Misc functions such as debug functions, items that should not make it in the final build */
     private void DrawMisc()
     {
-        if (GUI.Button(new Rect(500, 25, 100, 25), "Create Server"))
+        /*if (GUI.Button(new Rect(500, 25, 100, 25), "Create Server"))
         {
             Network.incomingPassword = "HolyMoly";
             Network.InitializeServer(32, 25000, true);
@@ -229,9 +229,9 @@ public class HUD : MonoBehaviour
         if (GUI.Button(new Rect(500, 50, 100, 25), "Join Server"))
         {
             Network.Connect("71.237.249.213", 25000, "HolyMoly");
-        }
+        }*/
 		
-		GUI.Label(DebugRect, DebugString);
+		//GUI.Label(DebugRect, DebugString);
     }
 
 	void OnGUI()

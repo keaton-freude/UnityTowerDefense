@@ -12,14 +12,8 @@ public class GameMaster: Pathfinding
 	 * 2: Game is actively being played.
 	 * 3: Game score is being shown.
 	 */
-	public enum GAMESTATE
-	{
-		UTD_GAMESTATE_NETWORKINIT = 0,
-		UTD_GAMESTATE_PREGAME = 1,
-		UTD_GAMESTATE_PLAYGAME = 2,
-		UTD_GAMESTATE_POSTGAME = 3
-	}
-	public GAMESTATE gameState = GAMESTATE.UTD_GAMESTATE_NETWORKINIT;
+
+	//public GAMESTATE gameState = GAMESTATE.UTD_GAMESTATE_NETWORKINIT;
 	public Map map;
 	public int NumberOfExpectedPlayers = 2;
 	/* Server is always counted as 1 */
@@ -64,9 +58,7 @@ public class GameMaster: Pathfinding
 	// Use this for initialization
 	void Start () 
 	{
-		gameState = GAMESTATE.UTD_GAMESTATE_NETWORKINIT;
-
-		GameObject.Find ("__NetworkManager").GetComponent<NetworkManager>().AtMainMenu = false;
+		//GameObject.Find ("__NetworkManager").GetComponent<NetworkManager>().gameState =  NetworkManager.GAMESTATE.UTD_GAMESTATE_PREGAME;
 	}
 	
 	public bool InitConnection = false;
@@ -74,35 +66,11 @@ public class GameMaster: Pathfinding
 	// Update is called once per frame
 	void Update () 
 	{
-		/* The gamemaster will continually poll and watch the game to determine whats going on */
-		string DebugInfo = "";
-		/* DEBUG */
-		//First, lets keep track of our current state...
-		DebugInfo += "GameState: " + gameState.ToString();
-		
-		/* Next, switch on the current state, and we'll see whats up */
-		switch (gameState)
-		{
-			case GAMESTATE.UTD_GAMESTATE_NETWORKINIT:
-
-				break;
-			case GAMESTATE.UTD_GAMESTATE_PREGAME:
-				break;
-			case GAMESTATE.UTD_GAMESTATE_PLAYGAME:
-				break;
-			case GAMESTATE.UTD_GAMESTATE_POSTGAME:
-				break;
-			default:
-				break;
-		}
-		GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>().DebugString = DebugInfo;
 		
 	}
 	
 	void OnConnectedToServer()
 	{
-		Debug.Log ("Connected!");
-		gameState = GAMESTATE.UTD_GAMESTATE_PREGAME;
 	}
 
     void OnFailedToConnect(NetworkConnectionError error)

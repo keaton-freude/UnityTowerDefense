@@ -2549,9 +2549,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
 --- !u!108 &800941159
 Light:
   m_ObjectHideFlags: 0
@@ -3086,9 +3083,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
   m_Name: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
@@ -4999,9 +4993,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1419315354
 Light:
   m_ObjectHideFlags: 0
@@ -5790,7 +5781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3bb7a6e5f6b324891eb08794d88048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtMainMenu: 1
+  InGamePregameStyle: {fileID: 11400000, guid: 074dacfbe7e04ba4a8f23f3dba321fcb, type: 2}
 --- !u!148 &1622510384
 NetworkView:
   m_ObjectHideFlags: 0
@@ -7706,9 +7697,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
   m_Name: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 

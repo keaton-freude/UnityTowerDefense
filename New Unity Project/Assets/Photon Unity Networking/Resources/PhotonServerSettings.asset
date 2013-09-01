@@ -24,4 +24,5 @@ MonoBehaviour:
   - OnAwakeRPC
   - DestroyRpc
   - DoDamageToMob
+  - NumberOfPlayers
   DisableAutoOpenWizard: 0
