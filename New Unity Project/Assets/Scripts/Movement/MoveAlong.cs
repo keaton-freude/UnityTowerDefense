@@ -24,7 +24,7 @@ public class MoveAlong : Pathfinding
 			Move();
 	}
 	
-	public void Move()
+	new public void Move()
 	{
 		if (Path.Count > 0)
 		{

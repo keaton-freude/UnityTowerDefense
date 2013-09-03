@@ -21,7 +21,7 @@ public class TestMovement : Pathfinding {
 		}
 	}
 	
-	void Move()
+	new void Move()
 	{
 		if (Path.Count > 0)
 		{

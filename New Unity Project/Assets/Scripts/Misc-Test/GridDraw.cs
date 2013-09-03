@@ -27,7 +27,7 @@ public class GridDraw : MonoBehaviour {
 	
 	public int Y_OFFSET = 23;
 	
-	public Camera camera;
+	public new Camera camera;
 
 	// Use this for initialization
 	void Start () 

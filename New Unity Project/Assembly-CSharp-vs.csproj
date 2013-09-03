@@ -1,181 +1,192 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>10.0.20506</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_0;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_0;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>Temp\bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="System" />
+    <Reference Include="System" />
     <Reference Include="System.XML" />
-	<Reference Include="System.Core" />
-	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-	</Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DaylightCycle.cs" />
-     <Compile Include="Assets\FloatingText.cs" />
-     <Compile Include="Assets\HealthbarScript.cs" />
-     <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\General Scripts\ActivateTrigger.cs" />
-     <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
-     <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
-     <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
-     <Compile Include="Assets\LoadParameters.cs" />
-     <Compile Include="Assets\MainMenuHUD.cs" />
-     <Compile Include="Assets\MobStats.cs" />
-     <Compile Include="Assets\MonsterManager.cs" />
-     <Compile Include="Assets\MovementScript.cs" />
-     <Compile Include="Assets\NetworkManager.cs" />
-     <Compile Include="Assets\Pathfinding\Scenes\Scripts\AI.cs" />
-     <Compile Include="Assets\Pathfinding\Scenes\Scripts\GridPlayer.cs" />
-     <Compile Include="Assets\Pathfinding\Scenes\Scripts\Lines.cs" />
-     <Compile Include="Assets\Pathfinding\Scenes\Scripts\SetGrid.cs" />
-     <Compile Include="Assets\Pathfinding\Scenes\Scripts\TDEnemy.cs" />
-     <Compile Include="Assets\Pathfinding\Scenes\Scripts\TDManager.cs" />
-     <Compile Include="Assets\Pathfinding\Scenes\Scripts\WaypointPlayer.cs" />
-     <Compile Include="Assets\Pathfinding\Scripts\DynamicTDGridObject.cs" />
-     <Compile Include="Assets\Pathfinding\Scripts\Node.cs" />
-     <Compile Include="Assets\Pathfinding\Scripts\NodeSearch.cs" />
-     <Compile Include="Assets\Pathfinding\Scripts\Pathfinder.cs" />
-     <Compile Include="Assets\Pathfinding\Scripts\Pathfinding.cs" />
-     <Compile Include="Assets\Pathfinding\Scripts\QueuePath.cs" />
-     <Compile Include="Assets\Pathfinding\Scripts\WaypointListNode.cs" />
-     <Compile Include="Assets\Pathfinding\Scripts\WaypointNode.cs" />
-     <Compile Include="Assets\Pathfinding\Scripts\WaypointPathfinder.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoBoxes\OnAwakePhysicsSettings.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoBoxes\TestChangeScene.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoBoxes\TestGuiInstantiate.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoHub\MoveCam.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoSynchronization\CubeExtra.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoSynchronization\CubeLerp.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoSynchronization\IELdemo.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Game\Chat.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Game\GameManager.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Game\Player\ThirdPersonCamera.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Game\Player\ThirdPersonController.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Game\Player\ThirdPersonNetwork.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Menu\EnableScript.cs" />
-     <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Menu\MainMenu.cs" />
-     <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\AudioRpc.cs" />
-     <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\ClickDetector.cs" />
-     <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\GameLogic.cs" />
-     <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\Monstergame\Resources\Scripts\myThirdPersonController.cs" />
-     <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\NetworkCharacter.cs" />
-     <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\RandomMatchmaker.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\CustomTypes.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Enums.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Extensions.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\LoadbalancingPeer.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonClasses.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonLagSimulationGui.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonPlayer.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonStatsGui.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Room.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\RoomInfo.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\RpcIndexComponent.cs" />
-     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\ServerSettings.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\ConnectAndJoinRandom.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\DontDestroyOnLoad.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\InputToEvent.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\ManualPhotonViewAllocator.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnAwakeUsePhotonView.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnClickDestroy.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnClickInstantiate.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnClickLoadSomething.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PointedAtGameObjectInfo.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\ServerTime.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TestBase.cs" />
-     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
-     <Compile Include="Assets\Rain&amp;Snow_StaticNova\Prefabs\Scripts\MouseLook.cs" />
-     <Compile Include="Assets\Scoreboard.cs" />
-     <Compile Include="Assets\Scripts\CameraScripts\RTSCameraMove.cs" />
-     <Compile Include="Assets\Scripts\GUI\DebugTest.cs" />
-     <Compile Include="Assets\Scripts\GUI\HUD.cs" />
-     <Compile Include="Assets\Scripts\Misc-Test\DummyDraw.cs" />
-     <Compile Include="Assets\Scripts\Misc-Test\GameMaster.cs" />
-     <Compile Include="Assets\Scripts\Misc-Test\GridDraw.cs" />
-     <Compile Include="Assets\Scripts\Misc-Test\MonsterData.cs" />
-     <Compile Include="Assets\Scripts\Misc-Test\TestMovement.cs" />
-     <Compile Include="Assets\Scripts\Misc-Test\TestParticles.cs" />
-     <Compile Include="Assets\Scripts\Misc-Test\TestWidth.cs" />
-     <Compile Include="Assets\Scripts\Movement\MoveAlong.cs" />
-     <Compile Include="Assets\Scripts\Movement\WaypointMover.cs" />
-     <Compile Include="Assets\Scripts\Projectile\ArrowFire.cs" />
-     <Compile Include="Assets\Scripts\Projectile\MoveArrow.cs" />
-     <Compile Include="Assets\Scripts\TowerData.cs" />
-     <Compile Include="Assets\TestHPBar.cs" />
-     <Compile Include="Assets\TowerInfo.cs" />
-     <Compile Include="Assets\Waypoints.cs" />
-     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
-     <None Include="Assets\Rain&amp;Snow_StaticNova\README.txt" />
-     <None Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\marcopolo-readme.txt" />
-     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
-     <None Include="Assets\ImportedAssetsAtStart\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
-     <None Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\Photon3Unity3D.xml" />
-     <None Include="Assets\HPBarShader.shader" />
-     <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-SimpleWater4.shader" />
-     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\ImportedAssetsAtStart\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\release_history.txt" />
-     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
-     <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
-     <None Include="Assets\Photon Unity Networking\DemoBoxes\Resources\eurof_tt.txt" />
-     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
-     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
-     <None Include="Assets\Scripts\Todo.txt" />
-     <None Include="Assets\Standard Assets\Water (Pro Only)\Sources\Shaders\FX-Water.shader" />
-     <None Include="Assets\SkeletonData\animations.txt" />
-     <None Include="Assets\Photon Unity Networking\readme.txt" />
-     <None Include="Assets\ImportedAssetsAtStart\SkeletonData\animations.txt" />
-     <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\WaterInclude.cginc" />
-     <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-Water4.shader" />
-     <None Include="Assets\ImportedAssetsAtStart\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
-     <None Include="Assets\Photon Unity Networking\changelog.txt" />
- <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
- </Reference>
- <Reference Include="Photon3Unity3D">
- <HintPath>Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\Photon3Unity3D.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\DaylightCycle.cs" />
+    <Compile Include="Assets\FloatingText.cs" />
+    <Compile Include="Assets\HealthbarScript.cs" />
+    <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\General Scripts\ActivateTrigger.cs" />
+    <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
+    <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
+    <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
+    <Compile Include="Assets\LoadParameters.cs" />
+    <Compile Include="Assets\MainMenuHUD.cs" />
+    <Compile Include="Assets\MobStats.cs" />
+    <Compile Include="Assets\MonsterManager.cs" />
+    <Compile Include="Assets\MovementScript.cs" />
+    <Compile Include="Assets\NetworkManager.cs" />
+    <Compile Include="Assets\Pathfinding\Scenes\Scripts\AI.cs" />
+    <Compile Include="Assets\Pathfinding\Scenes\Scripts\GridPlayer.cs" />
+    <Compile Include="Assets\Pathfinding\Scenes\Scripts\Lines.cs" />
+    <Compile Include="Assets\Pathfinding\Scenes\Scripts\SetGrid.cs" />
+    <Compile Include="Assets\Pathfinding\Scenes\Scripts\TDEnemy.cs" />
+    <Compile Include="Assets\Pathfinding\Scenes\Scripts\TDManager.cs" />
+    <Compile Include="Assets\Pathfinding\Scenes\Scripts\WaypointPlayer.cs" />
+    <Compile Include="Assets\Pathfinding\Scripts\DynamicTDGridObject.cs" />
+    <Compile Include="Assets\Pathfinding\Scripts\Node.cs" />
+    <Compile Include="Assets\Pathfinding\Scripts\NodeSearch.cs" />
+    <Compile Include="Assets\Pathfinding\Scripts\Pathfinder.cs" />
+    <Compile Include="Assets\Pathfinding\Scripts\Pathfinding.cs" />
+    <Compile Include="Assets\Pathfinding\Scripts\QueuePath.cs" />
+    <Compile Include="Assets\Pathfinding\Scripts\WaypointListNode.cs" />
+    <Compile Include="Assets\Pathfinding\Scripts\WaypointNode.cs" />
+    <Compile Include="Assets\Pathfinding\Scripts\WaypointPathfinder.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoBoxes\OnAwakePhysicsSettings.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoBoxes\TestChangeScene.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoBoxes\TestGuiInstantiate.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoHub\MoveCam.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoSynchronization\CubeExtra.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoSynchronization\CubeLerp.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoSynchronization\IELdemo.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Game\Chat.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Game\GameManager.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Game\Player\ThirdPersonCamera.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Game\Player\ThirdPersonController.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Game\Player\ThirdPersonNetwork.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Menu\EnableScript.cs" />
+    <Compile Include="Assets\Photon Unity Networking\DemoWorker\Scripts\Menu\MainMenu.cs" />
+    <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\AudioRpc.cs" />
+    <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\ClickDetector.cs" />
+    <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\GameLogic.cs" />
+    <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\Monstergame\Resources\Scripts\myThirdPersonController.cs" />
+    <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\NetworkCharacter.cs" />
+    <Compile Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\RandomMatchmaker.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\CustomTypes.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Enums.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Extensions.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\LoadbalancingPeer.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonClasses.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonLagSimulationGui.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonPlayer.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonStatsGui.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Room.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\RoomInfo.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\RpcIndexComponent.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\ServerSettings.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\ConnectAndJoinRandom.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\DontDestroyOnLoad.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\InputToEvent.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\ManualPhotonViewAllocator.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnAwakeUsePhotonView.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnClickDestroy.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnClickInstantiate.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnClickLoadSomething.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PointedAtGameObjectInfo.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\ServerTime.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TestBase.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
+    <Compile Include="Assets\Rain&amp;Snow_StaticNova\Prefabs\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scoreboard.cs" />
+    <Compile Include="Assets\Scripts\CameraScripts\RTSCameraMove.cs" />
+    <Compile Include="Assets\Scripts\GameStates\CountdownGameState.cs" />
+    <Compile Include="Assets\Scripts\GameStates\PlayGameGameState.cs" />
+    <Compile Include="Assets\Scripts\GUI\DebugTest.cs" />
+    <Compile Include="Assets\Scripts\GUI\HUD.cs" />
+    <Compile Include="Assets\Scripts\GameStates\GameState.cs" />
+    <Compile Include="Assets\Scripts\GameStates\LogInGameState.cs" />
+    <Compile Include="Assets\Scripts\GameStates\MainMenuGameState.cs" />
+    <Compile Include="Assets\Scripts\GameStates\PreGameGameState.cs" />
+    <Compile Include="Assets\Scripts\Misc-Test\DummyDraw.cs" />
+    <Compile Include="Assets\Scripts\Misc-Test\GameMaster.cs" />
+    <Compile Include="Assets\Scripts\Misc-Test\GridDraw.cs" />
+    <Compile Include="Assets\Scripts\Misc-Test\MonsterData.cs" />
+    <Compile Include="Assets\Scripts\Misc-Test\TestMovement.cs" />
+    <Compile Include="Assets\Scripts\Misc-Test\TestParticles.cs" />
+    <Compile Include="Assets\Scripts\Misc-Test\TestWidth.cs" />
+    <Compile Include="Assets\Scripts\Movement\MoveAlong.cs" />
+    <Compile Include="Assets\Scripts\Movement\WaypointMover.cs" />
+    <Compile Include="Assets\Scripts\Projectile\ArrowFire.cs" />
+    <Compile Include="Assets\Scripts\Projectile\MoveArrow.cs" />
+    <Compile Include="Assets\Scripts\TowerData.cs" />
+    <Compile Include="Assets\Scripts\UTDDatabase.cs" />
+    <Compile Include="Assets\Scripts\WWWLoader.cs" />
+    <Compile Include="Assets\TestHPBar.cs" />
+    <Compile Include="Assets\TowerInfo.cs" />
+    <Compile Include="Assets\Waypoints.cs" />
+    <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+    <None Include="Assets\Rain&amp;Snow_StaticNova\README.txt" />
+    <None Include="Assets\Photon Unity Networking\MarcoPolo-Tutorial\marcopolo-readme.txt" />
+    <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+    <None Include="Assets\ImportedAssetsAtStart\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+    <None Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\Photon3Unity3D.xml" />
+    <None Include="Assets\HPBarShader.shader" />
+    <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-SimpleWater4.shader" />
+    <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+    <None Include="Assets\ImportedAssetsAtStart\Standard Assets\Skyboxes\_skybox info.txt" />
+    <None Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\release_history.txt" />
+    <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
+    <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+    <None Include="Assets\Photon Unity Networking\DemoBoxes\Resources\eurof_tt.txt" />
+    <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
+    <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+    <None Include="Assets\Scripts\Todo.txt" />
+    <None Include="Assets\Standard Assets\Water (Pro Only)\Sources\Shaders\FX-Water.shader" />
+    <None Include="Assets\SkeletonData\animations.txt" />
+    <None Include="Assets\Photon Unity Networking\readme.txt" />
+    <None Include="Assets\ImportedAssetsAtStart\SkeletonData\animations.txt" />
+    <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\WaterInclude.cginc" />
+    <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-Water4.shader" />
+    <None Include="Assets\ImportedAssetsAtStart\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+    <None Include="Assets\Photon Unity Networking\changelog.txt" />
+    <Reference Include="Assembly-UnityScript-firstpass">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\Photon3Unity3D.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{79391AC5-8752-B4CC-F33F-BB9EB1094377}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{79391AC5-8752-B4CC-F33F-BB9EB1094377}</Project>
+      <Name>Assembly-CSharp-firstpass-vs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -185,5 +196,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>
