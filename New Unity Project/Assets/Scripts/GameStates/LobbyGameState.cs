@@ -13,8 +13,6 @@ public class LobbyPlayerInfo
     public LobbyPlayerInfo()
     {
     }
-
-
 }
 
 public class LobbyGameState : GameState
@@ -58,38 +56,53 @@ public class LobbyGameState : GameState
         {
             players[i] = new LobbyPlayerInfo();
         }
-        SetupPlayerInfo();
+        SetupPlayerInfo(0, 0);
+		SetupPlayerInfo(0, 1);
+		SetupPlayerInfo(0, 2);
+		SetupPlayerInfo(1, 3);
+		SetupPlayerInfo(1, 4);
+		SetupPlayerInfo(1, 5);
+		
 
     }
 
-    public void SetupPlayerInfo()
+    public void SetupPlayerInfo(int team, int id)
     {
-        for (int i = 0; i < 6; i++)
-        {
-            players[i].RaceComboBox = new ComboBox(new Rect(100, 100 + (i * 40), 100, 20), racesList[0], racesList, "button", "box", listStyle);
-        }
-
-        //for (int i = 2; i < 6; i++)
-        //{
-
-        //}
+    	players[id].RaceComboBox = new ComboBox(new Rect(Screen.width * (PlayerNameRectOffset + PlayerNameWidth + .01f), Screen.height * (PlayerNameHeightOffset + (id * PlayerNameHeightPerID) + (team * TeamHeightOffset)), 100, 20), racesList[0], racesList, "button", "box", listStyle);
+       	Debug.Log (Screen.height * (PlayerNameHeightOffset + (id * PlayerNameHeightPerID) + (team * TeamHeightOffset)));
     }
 
 
     public override void OnGUI()
     {
         GUI.skin = skin;
+		GUI.depth = 1;
         GUI.Box(new Rect(Screen.width * .35f, Screen.height * .15f, Screen.width * .3f, Screen.height * .55f), "Pre-Game Lobby");
         GUI.Box(new Rect(Screen.width * .375f, Screen.height * .18f, Screen.width * .25f, Screen.height * .19f), "Team 1 - Top", "window");
-        PlayerGUI(0, 0);
+		GUI.depth = 0;
+
+  		GUI.depth = 1;
+        GUI.Box(new Rect(Screen.width * .375f, Screen.height * .39f, Screen.width * .25f, Screen.height * .19f), "Team 2 - Bottom", "window");
+		GUI.depth = 0;
+		PlayerGUI(0, 0);
         PlayerGUI(0, 1);
         PlayerGUI(0, 2);
-  
-        GUI.Box(new Rect(Screen.width * .375f, Screen.height * .39f, Screen.width * .25f, Screen.height * .19f), "Team 2 - Bottom", "window");
         PlayerGUI(1, 3);
         PlayerGUI(1, 4);
         PlayerGUI(1, 5);
-
+		
+		GUI.enabled = false;
+		if (GUI.Button (new Rect(Screen.width * (PlayerNameRectOffset + PlayerNameWidth + .01f) + 100 + Screen.width * .01f, 
+			Screen.height * (PlayerNameHeightOffset + (0 * PlayerNameHeightPerID) + (0 * TeamHeightOffset)), 
+			38, 20), "Join"))
+		{
+			
+		}
+		GUI.enabled = true;
+		
+		
+		
+		GUI.depth = 1;
         GUI.skin = null;
     }
 
@@ -97,6 +110,7 @@ public class LobbyGameState : GameState
     {
         GUI.Label(new Rect(Screen.width * PlayerNameRectOffset, Screen.height * (PlayerNameHeightOffset + (id * PlayerNameHeightPerID) + (team * TeamHeightOffset)), Screen.width * PlayerNameWidth, Screen.height * PlayerNameHeight), players[id].name, "textarea");
         //Debug.Log("ID: " + (PlayerNameHeightOffset + (id * PlayerNameHeightPerID
+		
         players[id].RaceComboBox.Show();
     }
 

@@ -14,8 +14,10 @@ public class NetworkManager : MonoBehaviour
 	void Start () 
 	{
         database = new UTDDatabase();
-        StateStack.Push(new LogInGameState(this.GetComponent<NetworkManager>()));
-        ((LogInGameState)StateStack.Peek()).backgroundTexture = backgroundTexture;
+        //StateStack.Push(new LogInGameState(this.GetComponent<NetworkManager>()));
+        //((LogInGameState)StateStack.Peek()).backgroundTexture = backgroundTexture;
+		
+		StateStack.Push (new LobbyGameState(this));
 	}
 
 	void Update () 
