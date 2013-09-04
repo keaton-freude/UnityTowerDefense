@@ -16,8 +16,9 @@ public class MainMenuGameState: GameState
             Network.InitializeServer(1, 25000, !Network.HavePublicAddress());
             MasterServer.RegisterHost("UnityTowerDefense_freudek", "Keaton's Game", "The default game");
             //AtMainMenu = false;
-            UnityEngine.Object.DontDestroyOnLoad(GameObject.Find("__NetworkManager"));
-            Application.LoadLevel("MainScene");
+            //UnityEngine.Object.DontDestroyOnLoad(GameObject.Find("__NetworkManager"));
+            //Application.LoadLevel("MainScene");
+            networkManager.StateStack.Push(new LobbyGameState(networkManager));
         }
 
         if (GUI.Button(new Rect(165, 90, 130, 45), "Refresh Server List"))

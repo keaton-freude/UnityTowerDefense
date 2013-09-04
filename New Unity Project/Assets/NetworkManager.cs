@@ -62,11 +62,11 @@ public class NetworkManager : MonoBehaviour
 	
 	public void OnServerInitialized()
 	{
-        StateStack.Push(new PreGameGameState(this.GetComponent<NetworkManager>(), InGamePregameStyle));
+        //StateStack.Push(new PreGameGameState(this.GetComponent<NetworkManager>(), InGamePregameStyle));
 	}
 	
 	public void OnConnectedToServer()
 	{
-        StateStack.Push(new PreGameGameState(this.GetComponent<NetworkManager>(), InGamePregameStyle));
+        //StateStack.Push(new PreGameGameState(this.GetComponent<NetworkManager>(), InGamePregameStyle));
 	}
 }
