@@ -2,7 +2,7 @@
 using UnityEngine;
 public class LogInGameState: GameState
 {
-    private string username = "";
+    public string username = "";
     private string password = "";
     private string registerUsername = "";
     private string registerPassword = "";
@@ -37,6 +37,7 @@ public class LogInGameState: GameState
 
         if (database.Authenticated)
         {
+			networkManager.accountName = username;
             networkManager.StateStack.Push(new MainMenuGameState(this.networkManager));
             backgroundTexture.enabled = false;
         }

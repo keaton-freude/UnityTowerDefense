@@ -25,4 +25,5 @@ MonoBehaviour:
   - DestroyRpc
   - DoDamageToMob
   - NumberOfPlayers
+  - UpdateLobbyInfo
   DisableAutoOpenWizard: 0

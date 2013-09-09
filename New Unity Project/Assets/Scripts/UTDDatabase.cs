@@ -117,6 +117,8 @@ public class UTDDatabase
         {
             if (GameObject.Find("__NetworkManager").GetComponent<NetworkManager>().StateStack.Peek() is LogInGameState)
             {
+				//Debug.Log (((LogInGameState)GameObject.Find("__NetworkManager").GetComponent<NetworkManager>().StateStack.Peek()).username);
+				//GameObject.Find ("__NetworkManager").GetComponent<NetworkManager>().accountName = ((LogInGameState)GameObject.Find("__NetworkManager").GetComponent<NetworkManager>().StateStack.Peek()).username;
                 LogInGameState state = ((LogInGameState)GameObject.Find("__NetworkManager").GetComponent<NetworkManager>().StateStack.Peek());
                 state.status = "Account Creation Success!";
             }

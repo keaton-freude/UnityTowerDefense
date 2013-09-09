@@ -9,10 +9,13 @@ public class LobbyPlayerInfo
     public bool PlayerJoined = false;
     public string name = "< Empty >";
     public ComboBox RaceComboBox;
+    public int RaceIndex = 0;
 
     public LobbyPlayerInfo()
     {
     }
+
+
 }
 
 public class LobbyGameState : GameState
@@ -31,18 +34,19 @@ public class LobbyGameState : GameState
     private GUIStyle listStyle = new GUIStyle();
 	public ListBox playersInLobby;
 
+    public LobbyPlayerInfo[] players;
 
-    LobbyPlayerInfo[] players;
+    public void SetRaceFromIndex(int playerid, int index)
+    {
+        players[playerid].SelectedRace = racesList[index].text;
+        players[playerid].RaceComboBox.SelectedItemIndex = index;
+    }
 
     public LobbyGameState(NetworkManager manager)
     {
+		this.networkManager = manager;
 		playersInLobby = new ListBox();
-		playersInLobby.AddEntry("Arctic Monkey");
-		playersInLobby.AddEntry("freudek");
-		playersInLobby.AddEntry ("Ser Francis Freuden");
-		
-		
-		
+
         skin = GameObject.Find("__NetworkManager").GetComponent<NetworkManager>().InGamePregameStyle;
         racesList = new GUIContent[3];
         racesList[0] = (new GUIContent("Fire"));
@@ -71,7 +75,49 @@ public class LobbyGameState : GameState
 		SetupPlayerInfo(1, 4);
 		SetupPlayerInfo(1, 5);
 		
+		//add ourselves to the lobby and update everyone
+		playersInLobby.AddEntry(networkManager.accountName);
+		
 
+    }
+
+    public string GetLobbyState()
+    {
+        //PlayerNameInLobby1, PlayerNameInLobby2, ...PARAM_SPLITPlayerNameTeam1Slot1, PlayerNameteam1Slot2, ...PARAM_SPLITRaceChoiceTeam1Slot1, RaceChoiceTeam1Slot2
+        string state = "";
+		
+		if (playersInLobby.entryList.Count != 0)
+		{
+	        for (int i = 0; i < playersInLobby.entryList.Count - 1; ++i)
+	        {
+	            state += playersInLobby.entryList[i].name + ",";
+	        }
+	
+	        state += playersInLobby.entryList[playersInLobby.entryList.Count - 1].name + "PARAM_SPLIT";
+		}
+		else
+		{
+			//write token for no players in Lobby so client can tell
+			state += "UTD_NOPLAYERSINLOBBYPARAM_SPLIT";
+		}
+
+        for (int i = 0; i < players.Length - 1; ++i)
+        {
+            state += players[i].name + ",";
+        }
+
+        state += players[players.Length - 1].name + "PARAM_SPLIT";
+
+        for (int i = 0; i < players.Length - 1; ++i)
+        {
+            state += players[i].SelectedID.ToString() + ",";
+        }
+
+        state += players[players.Length - 1].SelectedID.ToString();
+
+        
+
+        return state;
     }
 
     public void SetupPlayerInfo(int team, int id)
@@ -83,6 +129,11 @@ public class LobbyGameState : GameState
 
     public override void OnGUI()
     {
+        if (GUI.Button(new Rect(100, 100, 100, 45), "Lobby State"))
+        {
+            Debug.Log(GetLobbyState());
+        }
+
         GUI.skin = skin;
 		GUI.depth = 1;
         GUI.Box(new Rect(Screen.width * .1f, Screen.height * .14f, Screen.width * .55f, Screen.height * .55f), "Pre-Game Lobby");
@@ -116,21 +167,88 @@ public class LobbyGameState : GameState
         GUI.Label(new Rect(Screen.width * PlayerNameRectOffset, Screen.height * (PlayerNameHeightOffset + (id * PlayerNameHeightPerID) + (team * TeamHeightOffset)), Screen.width * PlayerNameWidth, Screen.height * PlayerNameHeight), players[id].name, "textarea");
         //Debug.Log("ID: " + (PlayerNameHeightOffset + (id * PlayerNameHeightPerID
 		
-        players[id].RaceComboBox.Show();
+
+		
+		players[id].SelectedID = players[id].RaceComboBox.SelectedItemIndex;
 		
 		GUI.enabled = !players[id].PlayerJoined;
 		if (GUI.Button (new Rect(Screen.width * (PlayerNameRectOffset + PlayerNameWidth + .01f) + 100 + Screen.width * .01f, 
 			Screen.height * (PlayerNameHeightOffset + (id * PlayerNameHeightPerID) + (team * TeamHeightOffset)), 
 			38, 20), "Join"))
 		{
+			/* check if we're already in a slot... */
+			if (AlreadyInSlot(networkManager.accountName))
+			{
+				/* clean that slot up... */
+				ResetSlot(networkManager.accountName);
+			}
 			
+			Entry e = PlayerInLobby(networkManager.accountName);
+			if (e != null)
+				RemovePlayerInLobby(e);
+			
+			players[id].name = networkManager.accountName;
+			players[id].PlayerJoined = true;
+			networkManager.networkView.RPC("UpdateLobbyInfo", RPCMode.Others, GetLobbyState());
 		}
 		//Reset our state back so we don'tbreak subsequent calls
 		GUI.enabled = true;
+		
+		players[id].RaceComboBox.Show();
     }
+	
+	float time = 0f;
+	
+	public Entry PlayerInLobby(string name)
+	{
+		foreach (Entry e in playersInLobby.entryList)
+		{
+			if (e.name == name)
+			{
+				return e;
+			}
+		}
+		
+		return null;
+	}
+	
+	public void RemovePlayerInLobby(Entry entry)
+	{
+		playersInLobby.RemoveEntry(entry);
+	}
+	
+	public bool AlreadyInSlot(string name)
+	{
+		foreach (LobbyPlayerInfo pi in players)
+		{
+			if (pi.name == name)
+				return true;
+		}
+		return false;
+	}
+	
+	public void ResetSlot(string name)
+	{
+		foreach (LobbyPlayerInfo pi in players)
+		{
+			if (pi.name == name)
+			{
+				pi.PlayerJoined = false;
+				pi.name = "< Empty >";
+			}
+		}
+	}
 
     public override void Update()
     {
-        
+       	time += Time.deltaTime;
+		
+		if (time > 1f)
+		{
+			Debug.Log ("1 second has passed");
+			time -= 1f;
+			networkManager.networkView.RPC("UpdateLobbyInfo", RPCMode.Others, GetLobbyState());
+		}
+		
     }
 }

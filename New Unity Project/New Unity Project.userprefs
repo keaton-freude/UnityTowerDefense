@@ -1,6 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameStates\LobbyGameState.cs">
+    <Files>
+      <File FileName="Assets\MonsterManager.cs" Line="22" Column="3" />
+      <File FileName="Assets\Scripts\GameStates\LobbyGameState.cs" Line="181" Column="5" />
+      <File FileName="Assets\NetworkManager.cs" Line="132" Column="47" />
+      <File FileName="Assets\ListBox\ListBox.cs" Line="11" Column="25" />
+      <File FileName="Assets\Standard Assets\Scripts\ComboBox.cs" Line="105" Column="51" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="C:\Users\Keaton\Desktop\UnityTowerDefense\New Unity Project\Assets\Scripts\Projectile\ArrowFire.cs" line="52" />

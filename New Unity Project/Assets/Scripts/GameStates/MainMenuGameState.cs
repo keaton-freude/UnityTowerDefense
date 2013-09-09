@@ -55,11 +55,13 @@ public class MainMenuGameState: GameState
             //GUILayout.Space(5);
             if (GUILayout.Button("Connect"))
             {
+				
                 // Connect to HostData struct, internally the correct method is used (GUID when using NAT).
                 NetworkConnectionError e = Network.Connect(element);
                 Debug.Log(e);
-                UnityEngine.Object.DontDestroyOnLoad(GameObject.Find("__NetworkManager"));
-                Application.LoadLevel("MainScene");
+				networkManager.StateStack.Push(new LobbyGameState(networkManager));
+                //UnityEngine.Object.DontDestroyOnLoad(GameObject.Find("__NetworkManager"));
+                //Application.LoadLevel("MainScene");
 
             }
             GUILayout.EndHorizontal();

@@ -102,6 +102,8 @@ public class ComboBox
         set
         {
             selectedItemIndex = value;
+			buttonContent = listContent[selectedItemIndex];
+			
         }
     }
 }

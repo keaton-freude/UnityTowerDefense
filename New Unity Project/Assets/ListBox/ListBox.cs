@@ -4,7 +4,7 @@ using System.Collections.Generic;
  
 public class ListBox
 {
-	private List<Entry> entryList = new List<Entry>();
+	public List<Entry> entryList = new List<Entry>();
 	private int _selected = 0;
 	
 	//Returns the selected Entry.
@@ -28,6 +28,9 @@ public class ListBox
 	{
 		entryList = ListToLoad;
 	}
+
+    
+
 	public void Clear()
 	{
 		entryList.Clear();
