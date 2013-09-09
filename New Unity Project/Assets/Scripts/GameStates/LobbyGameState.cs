@@ -6,8 +6,8 @@ public class LobbyPlayerInfo
 {
     public int SelectedID = 0;
     public string SelectedRace = "";
-    public bool Enabled = false;
-    public string name = "Arctic Monkey";
+    public bool PlayerJoined = false;
+    public string name = "< Empty >";
     public ComboBox RaceComboBox;
 
     public LobbyPlayerInfo()
@@ -29,12 +29,20 @@ public class LobbyGameState : GameState
     GUIContent[] racesList;
     private ComboBox comboBoxControl;
     private GUIStyle listStyle = new GUIStyle();
+	public ListBox playersInLobby;
 
 
     LobbyPlayerInfo[] players;
 
     public LobbyGameState(NetworkManager manager)
     {
+		playersInLobby = new ListBox();
+		playersInLobby.AddEntry("Arctic Monkey");
+		playersInLobby.AddEntry("freudek");
+		playersInLobby.AddEntry ("Ser Francis Freuden");
+		
+		
+		
         skin = GameObject.Find("__NetworkManager").GetComponent<NetworkManager>().InGamePregameStyle;
         racesList = new GUIContent[3];
         racesList[0] = (new GUIContent("Fire"));
@@ -77,7 +85,11 @@ public class LobbyGameState : GameState
     {
         GUI.skin = skin;
 		GUI.depth = 1;
-        GUI.Box(new Rect(Screen.width * .35f, Screen.height * .15f, Screen.width * .3f, Screen.height * .55f), "Pre-Game Lobby");
+        GUI.Box(new Rect(Screen.width * .1f, Screen.height * .14f, Screen.width * .55f, Screen.height * .55f), "Pre-Game Lobby");
+		
+		GUI.Label (new Rect(Screen.width * .12f, Screen.height * .17f, Screen.width * .1f, 20), "Players in Lobby");
+		
+		
         GUI.Box(new Rect(Screen.width * .375f, Screen.height * .18f, Screen.width * .25f, Screen.height * .19f), "Team 1 - Top", "window");
 		GUI.depth = 0;
 
@@ -91,15 +103,8 @@ public class LobbyGameState : GameState
         PlayerGUI(1, 4);
         PlayerGUI(1, 5);
 		
-		GUI.enabled = false;
-		if (GUI.Button (new Rect(Screen.width * (PlayerNameRectOffset + PlayerNameWidth + .01f) + 100 + Screen.width * .01f, 
-			Screen.height * (PlayerNameHeightOffset + (0 * PlayerNameHeightPerID) + (0 * TeamHeightOffset)), 
-			38, 20), "Join"))
-		{
-			
-		}
-		GUI.enabled = true;
-		
+
+		playersInLobby.Draw (new Rect(Screen.width * .12f, Screen.height * .2f, Screen.width * .1f, Screen.height * .2f), 20f, Color.black, Color.white);
 		
 		
 		GUI.depth = 1;
@@ -112,6 +117,16 @@ public class LobbyGameState : GameState
         //Debug.Log("ID: " + (PlayerNameHeightOffset + (id * PlayerNameHeightPerID
 		
         players[id].RaceComboBox.Show();
+		
+		GUI.enabled = !players[id].PlayerJoined;
+		if (GUI.Button (new Rect(Screen.width * (PlayerNameRectOffset + PlayerNameWidth + .01f) + 100 + Screen.width * .01f, 
+			Screen.height * (PlayerNameHeightOffset + (id * PlayerNameHeightPerID) + (team * TeamHeightOffset)), 
+			38, 20), "Join"))
+		{
+			
+		}
+		//Reset our state back so we don'tbreak subsequent calls
+		GUI.enabled = true;
     }
 
     public override void Update()

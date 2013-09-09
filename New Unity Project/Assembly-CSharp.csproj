@@ -51,6 +51,7 @@
      <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\ImportedAssetsAtStart\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
+     <Compile Include="Assets\ListBox\ListBox.cs" />
      <Compile Include="Assets\LoadParameters.cs" />
      <Compile Include="Assets\MainMenuHUD.cs" />
      <Compile Include="Assets\MobStats.cs" />
