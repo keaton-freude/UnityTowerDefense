@@ -299,13 +299,7 @@ MonoBehaviour:
   Path: []
   PathType: 0
   JS: 0
-  NumberOfExpectedPlayers: 2
-  NumberOfPlayersInGame: 1
-  HostIP: 
   floatingTextPrefab: {fileID: 400000, guid: 0e2a957ffbb17ce468e5d6d5d7af6d75, type: 2}
-  IsServer: 0
-  Team1Lives: 30
-  Team2Lives: 30
   InitConnection: 0
 --- !u!4 &311146907
 Transform:
@@ -412,7 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HorizontalBounds: {x: 85, y: 415}
   VerticalBounds: {x: 0, y: 415}
-  CameraMovementEnabled: 0
+  CameraMovementEnabled: 1
   scrollArea: 5
   scrollSpeed: 250
   zoomSpeed: 550
