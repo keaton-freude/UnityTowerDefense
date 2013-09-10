@@ -73,6 +73,14 @@ public class NetworkManager : MonoBehaviour
 	{
         //StateStack.Push(new PreGameGameState(this.GetComponent<NetworkManager>(), InGamePregameStyle));
 	}
+	
+	[RPC]
+	public void BeginGameFromLobby()
+	{
+		StateStack.Push (new CountdownGameState(this, InGamePregameStyle));
+		UnityEngine.Object.DontDestroyOnLoad(GameObject.Find("__NetworkManager"));
+    	Application.LoadLevel("MainScene");
+	}
 
     [RPC]
     public void UpdateLobbyInfo(string state)

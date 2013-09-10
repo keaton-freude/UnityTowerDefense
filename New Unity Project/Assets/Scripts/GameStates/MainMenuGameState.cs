@@ -13,7 +13,8 @@ public class MainMenuGameState: GameState
         if (GUI.Button(new Rect(50, 90, 100, 45), "Create Server"))
         {
             Debug.Log("Registering Server");
-            Network.InitializeServer(1, 25000, !Network.HavePublicAddress());
+            Network.InitializeServer(0, 25000, !Network.HavePublicAddress());
+			
             MasterServer.RegisterHost("UnityTowerDefense_freudek", "Keaton's Game", "The default game");
             //AtMainMenu = false;
             //UnityEngine.Object.DontDestroyOnLoad(GameObject.Find("__NetworkManager"));

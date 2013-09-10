@@ -26,4 +26,5 @@ MonoBehaviour:
   - DoDamageToMob
   - NumberOfPlayers
   - UpdateLobbyInfo
+  - BeginGameFromLobby
   DisableAutoOpenWizard: 0

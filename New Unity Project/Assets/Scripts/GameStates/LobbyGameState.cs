@@ -129,23 +129,18 @@ public class LobbyGameState : GameState
 
     public override void OnGUI()
     {
-        if (GUI.Button(new Rect(100, 100, 100, 45), "Lobby State"))
-        {
-            Debug.Log(GetLobbyState());
-        }
-
         GUI.skin = skin;
 		GUI.depth = 1;
-        GUI.Box(new Rect(Screen.width * .1f, Screen.height * .14f, Screen.width * .55f, Screen.height * .55f), "Pre-Game Lobby");
+        GUI.Box(new Rect(Screen.width * .1f, Screen.height * .14f, Screen.width * .55f, Screen.height * .55f), "Pre-Game Lobby - Players Needed in Slots: " + GetNumberPlayersInSlots() + "/" + (Network.maxConnections + 1));
 		
 		GUI.Label (new Rect(Screen.width * .12f, Screen.height * .17f, Screen.width * .1f, 20), "Players in Lobby");
 		
 		
-        GUI.Box(new Rect(Screen.width * .375f, Screen.height * .18f, Screen.width * .25f, Screen.height * .19f), "Team 1 - Top", "window");
+        GUI.Box(new Rect(Screen.width * .375f, Screen.height * .18f, Screen.width * .265f, Screen.height * .19f), "Team 1 - Top", "window");
 		GUI.depth = 0;
 
   		GUI.depth = 1;
-        GUI.Box(new Rect(Screen.width * .375f, Screen.height * .39f, Screen.width * .25f, Screen.height * .19f), "Team 2 - Bottom", "window");
+        GUI.Box(new Rect(Screen.width * .375f, Screen.height * .39f, Screen.width * .265f, Screen.height * .19f), "Team 2 - Bottom", "window");
 		GUI.depth = 0;
 		PlayerGUI(0, 0);
         PlayerGUI(0, 1);
@@ -157,17 +152,48 @@ public class LobbyGameState : GameState
 
 		playersInLobby.Draw (new Rect(Screen.width * .12f, Screen.height * .2f, Screen.width * .1f, Screen.height * .2f), 20f, Color.black, Color.white);
 		
+		/* Draw Start Game Button */
+		if (Network.isServer)
+		{
+			//Debug.Log ("Connections: " + Network.connections.Length + " | Max Connections: " + Network.maxConnections);
+			GUI.enabled = GetNumberPlayersInSlots() == Network.maxConnections + 1;
+			if (GUI.Button(new Rect(Screen.width * .375f, Screen.height * .59f, Screen.width * .265f, Screen.height * .05f), "Start Game"))
+			{
+				//game is ready, lets start it up
+				networkManager.networkView.RPC ("BeginGameFromLobby", RPCMode.All);
+			}
+			GUI.enabled = true;
+		}
+		else
+		{
+			/* print the message that host can start when game is full */
+			GUI.enabled = false;
+			GUI.Button(new Rect(Screen.width * .375f, Screen.height * .59f, Screen.width * .25f, Screen.height * .05f), "Host may start when all players have joined slots.");
+			GUI.enabled = true;
+		}
 		
 		GUI.depth = 1;
         GUI.skin = null;
     }
+	
+	public int GetNumberPlayersInSlots()
+	{
+		int amt = 0;
+		
+		foreach (LobbyPlayerInfo pi in players)
+		{
+			if (pi.PlayerJoined)
+			{
+				amt++;
+			}
+		}
+		
+		return amt;
+	}
 
     public void PlayerGUI(int team, int id)
     {
         GUI.Label(new Rect(Screen.width * PlayerNameRectOffset, Screen.height * (PlayerNameHeightOffset + (id * PlayerNameHeightPerID) + (team * TeamHeightOffset)), Screen.width * PlayerNameWidth, Screen.height * PlayerNameHeight), players[id].name, "textarea");
-        //Debug.Log("ID: " + (PlayerNameHeightOffset + (id * PlayerNameHeightPerID
-		
-
 		
 		players[id].SelectedID = players[id].RaceComboBox.SelectedItemIndex;
 		
