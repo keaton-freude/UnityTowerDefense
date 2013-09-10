@@ -148,6 +148,7 @@
      <Compile Include="Assets\Scripts\TowerData.cs" />
      <Compile Include="Assets\Scripts\UTDDatabase.cs" />
      <Compile Include="Assets\Scripts\WWWLoader.cs" />
+     <Compile Include="Assets\ShootFireball.cs" />
      <Compile Include="Assets\ShowSkin.cs" />
      <Compile Include="Assets\TestHPBar.cs" />
      <Compile Include="Assets\TowerInfo.cs" />
