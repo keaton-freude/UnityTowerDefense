@@ -20,6 +20,7 @@ public class LobbyPlayerInfo
 
 public class LobbyGameState : GameState
 {
+
     public GUISkin skin;
     int listEntry = 0;
     bool selected = false;
@@ -277,4 +278,9 @@ public class LobbyGameState : GameState
 		}
 		
     }
+	
+	public override void Cleanup ()
+	{
+		
+	}
 }

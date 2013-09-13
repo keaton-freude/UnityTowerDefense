@@ -26,4 +26,9 @@ public class CountdownGameState : GameState
         if (PreGameCountdown <= 0f)
             networkManager.StateStack.Push(new PlayGameGameState(networkManager));
     }
+	
+	public override void Cleanup ()
+	{
+		
+	}
 }

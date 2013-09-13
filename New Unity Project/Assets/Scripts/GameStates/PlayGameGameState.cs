@@ -20,4 +20,9 @@ public class PlayGameGameState : GameState
     {
         
     }
+	
+	public override void Cleanup ()
+	{
+		
+	}
 }

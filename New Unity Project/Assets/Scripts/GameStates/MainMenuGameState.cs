@@ -69,11 +69,26 @@ public class MainMenuGameState: GameState
             GUILayout.EndArea();
 
         }
+		
+		//back button
+		if (GUI.Button (new Rect(0, 0, 50, 50), "Back"))
+		{
+			Debug.Log ("popping");
+			networkManager.StateStack.Pop();
+			/* clean up this state before we continue on */
+			networkManager.StateStack.Peek ().Cleanup();
+		}
     }
 
     public override void Update()
     {
         
     }
+	
+	public override void Cleanup ()
+	{
+		
+	}
+	
 }
 

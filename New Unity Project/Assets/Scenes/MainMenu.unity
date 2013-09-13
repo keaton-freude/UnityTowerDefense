@@ -2536,6 +2536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
 --- !u!108 &800941159
 Light:
   m_ObjectHideFlags: 0
@@ -3070,6 +3071,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
@@ -5000,6 +5002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
 --- !u!108 &1419315354
 Light:
   m_ObjectHideFlags: 0
@@ -5790,6 +5793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundTexture: {fileID: 1115466865}
   InGamePregameStyle: {fileID: 11400000, guid: 074dacfbe7e04ba4a8f23f3dba321fcb, type: 2}
+  VersionNumber: A.0001
   accountName: 
 --- !u!148 &1622510384
 NetworkView:
@@ -7706,6 +7710,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 

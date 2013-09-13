@@ -10,7 +10,7 @@ public class NetworkManager : MonoBehaviour
 
     public GUITexture backgroundTexture;
 	public GUISkin InGamePregameStyle;
-	
+	public string VersionNumber;
 	public string accountName = "NOT LOGGED IN";
 
 	void Start () 
@@ -30,6 +30,9 @@ public class NetworkManager : MonoBehaviour
 	public void OnGUI()
 	{
         StateStack.Peek().OnGUI();
+		
+		//Always drop version number on top of all other GUI elements (at least while in development)
+		GUI.Label(new Rect(0, Screen.height - 20, 200, 20), "Version: " + VersionNumber);
 	}
 	
 	[RPC]

@@ -63,9 +63,20 @@ public class LogInGameState: GameState
         GUI.Label(new Rect(Screen.width * .35f, Screen.height * .335f, 300, 25), status);
     }
 
-    public override void Update()
-    {
-        
-    }
+	public override void Cleanup ()
+	{
+		/* Deauthenticate */
+		database.Authenticated = false;
+		username = "";
+		password = "";
+		registerPassword = "";
+		registerPasswordAgain = "";
+		registerUsername = "";
+		status = "";
+	}
+	
+	public override void Update ()
+	{
+	}
 }
 

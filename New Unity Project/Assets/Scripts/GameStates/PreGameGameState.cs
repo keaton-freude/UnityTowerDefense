@@ -39,5 +39,10 @@ public class PreGameGameState: GameState
         Debug.Log("Player Connected");
         NumberPlayersConnected++;
     }
+	
+	public override void Cleanup ()
+	{
+		
+	}
 }
 
