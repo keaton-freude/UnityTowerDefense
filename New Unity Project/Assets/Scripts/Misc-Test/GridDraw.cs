@@ -21,7 +21,7 @@ public class GridDraw : MonoBehaviour {
 	public GameObject towerobj;
 	public GameObject cubeobj;
 	
-	public int GridSize = 10;
+	public int GridSize = 5;
 	
 	public int X_OFFSET = 20;
 	
@@ -57,7 +57,7 @@ public class GridDraw : MonoBehaviour {
 					Debug.Log (transformedLocation);
 					
 					/* Then instantiate the tower at the location */
-					Vector3 finalLocation = TransformGridToWorldSpace(transformedLocation) + new Vector3(5.0f, 0, 5.5f);
+					Vector3 finalLocation = TransformGridToWorldSpace(transformedLocation) + new Vector3(2.5f, 0, 5.5f / 2.0f);
 					
 					finalLocation += new Vector3(0f, 0, 0);
 					string prefabString = "";
@@ -242,7 +242,7 @@ public class GridDraw : MonoBehaviour {
 	
 	public Vector3 TransformGridToWorldSpace(Vector3 Coords)
 	{
-		Vector3 toReturn = Coords * 10.0f + new Vector3(X_OFFSET, 90, Y_OFFSET);
+		Vector3 toReturn = Coords * 5.0f + new Vector3(X_OFFSET, 90, Y_OFFSET);
 		
 		return toReturn;
 	}

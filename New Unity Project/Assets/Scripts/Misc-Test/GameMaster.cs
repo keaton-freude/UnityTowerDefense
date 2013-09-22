@@ -91,11 +91,11 @@ public class Map
 	
 	public Map()
 	{
-		map = new Cell[50, 50];
+		map = new Cell[100, 100];
 		
-		for(int i = 0; i < 50; ++i)
+		for(int i = 0; i < 100; ++i)
 		{
-			for(int j = 0; j < 50; ++j)
+			for(int j = 0; j < 100; ++j)
 			{
 				map[i, j] = new Cell();
 			}

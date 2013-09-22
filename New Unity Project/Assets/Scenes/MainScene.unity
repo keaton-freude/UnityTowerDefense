@@ -812,7 +812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c28d5e9ac136a4f838440a55fab466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tilesize: 10
+  Tilesize: 5
   MaxFalldownHeight: 2000
   ClimbLimit: 0
   HeuristicAggression: 0
@@ -1201,7 +1201,7 @@ MonoBehaviour:
   - {fileID: 833467313}
   towerobj: {fileID: 0}
   cubeobj: {fileID: 0}
-  GridSize: 10
+  GridSize: 5
   X_OFFSET: 20
   Y_OFFSET: 20
   camera: {fileID: 434243800}
